@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIJO Aeromaritime S.A. — Zona Libre de Colón, Panamá</title>
+<meta name="description" content="International trade operator and logistics company based in the Colón Free Zone, Panama. Food commodities, fuels, pharmaceuticals and general merchandise for Caribbean and Latin American markets.">
+<meta name="keywords" content="Zona Libre Colón, logística internacional, comercio exterior, Panamá, Cuba, Haití, alimentos, combustibles, contenedores, DIJO Aeromaritime">
+<meta property="og:title" content="DIJO Aeromaritime S.A. — International Trade & Logistics">
+<meta property="og:description" content="Operador de comercio internacional desde la Zona Libre de Colón, Panamá.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   DIJO AEROMARITIME S.A. — CORPORATE DESIGN SYSTEM v3.0
+   Zona Libre de Colón · Panamá
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── TOKENS ── */
+:root {
+  --navy:   #07162A;
+  --navy2:  #0D1E3A;
+  --navy3:  #1B3A6B;
+  --navy4:  #112240;
+  --red:    #C0392B;
+  --red2:   #E8402F;
+  --sky:    #2E86C1;
+  --sky2:   #1A5F8F;
+  --gold:   #C9A84C;
+  --gold2:  #E8C96A;
+  --gold3:  rgba(201,168,76,.08);
+  --white:  #EFF4F9;
+  --muted:  #7D98B8;
+  --faint:  #0B1929;
+  --line:   rgba(201,168,76,.14);
+  --line2:  rgba(201,168,76,.3);
+  --glass:  rgba(13,30,58,.7);
+  --fd: 'Cormorant Garamond', serif;
+  --fb: 'DM Sans', sans-serif;
+  --fl: 'Barlow Condensed', sans-serif;
+  --rad: 3px;
+  --rad2: 8px;
+  --shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--fb);
+  font-weight: 300;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ── NOISE OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.22;
+}
+
+/* ── ANIMATIONS ── */
+.rv  { opacity:0; transform:translateY(48px); transition:opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1); }
+.rl  { opacity:0; transform:translateX(-55px); transition:opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1); }
+.rr  { opacity:0; transform:translateX(55px); transition:opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1); }
+.rs  { opacity:0; transform:scale(.94); transition:opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1); }
+.rv.on, .rl.on, .rr.on, .rs.on { opacity:1; transform:none; }
+.d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+.d4{transition-delay:.32s} .d5{transition-delay:.4s}  .d6{transition-delay:.5s}
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 1rem 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background .4s, backdrop-filter .4s, box-shadow .4s;
+}
+nav.scrolled {
+  background: rgba(7,22,42,.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--line);
+}
+.nlogo img { height: 44px; width: auto; }
+.nlinks { display: flex; gap: 1.8rem; align-items: center; }
+.nlinks a {
+  font-family: var(--fl);
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color .2s;
+  position: relative;
+  padding-bottom: 3px;
+}
+.nlinks a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s;
+}
+.nlinks a:hover, .nlinks a.active { color: var(--white); }
+.nlinks a:hover::after, .nlinks a.active::after { transform: scaleX(1); }
+.ncta {
+  background: var(--red);
+  color: #fff;
+  font-family: var(--fl);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .5rem 1.3rem;
+  border-radius: var(--rad);
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+}
+.ncta:hover { background: var(--red2); transform: translateY(-1px); }
+
+/* Lang toggle */
+.lang-toggle {
+  display: flex;
+  border: 1px solid var(--line2);
+  border-radius: var(--rad);
+  overflow: hidden;
+  margin-left: .5rem;
+}
+.lang-btn {
+  background: none; border: none;
+  color: var(--muted);
+  font-family: var(--fl);
+  font-size: .62rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .33rem .65rem;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.lang-btn.active { background: var(--gold); color: var(--navy); }
+.lang-btn:hover:not(.active) { color: var(--white); background: rgba(255,255,255,.05); }
+
+/* Hamburger */
+.hbg { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hbg span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: all .3s; }
+
+/* Mobile nav */
+.mnav {
+  position: fixed; inset: 0;
+  background: rgba(7,22,42,.98);
+  z-index: 600;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2.5rem;
+  transform: translateX(100%);
+  transition: transform .45s cubic-bezier(.16,1,.3,1);
+}
+.mnav.open { transform: none; }
+.mnav a {
+  font-family: var(--fl);
+  font-size: 1.6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.mnav a:hover { color: var(--white); }
+.mclose {
+  position: absolute; top: 1.5rem; right: 5%;
+  background: none; border: none; color: var(--white);
+  font-size: 2rem; cursor: pointer; line-height: 1;
+}
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 6rem 5% 5rem;
+}
+.hbg-wrap { position: absolute; inset: 0; overflow: hidden; }
+.hbg-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(.28) saturate(.65);
+}
+.hbg-grad {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7,22,42,.65) 0%, rgba(7,22,42,0) 35%, rgba(7,22,42,0) 55%, rgba(7,22,42,.92) 85%, var(--navy) 100%),
+    linear-gradient(90deg, rgba(7,22,42,.4) 0%, transparent 50%, rgba(7,22,42,.4) 100%);
+}
+/* Animated grid */
+.hgrid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(46,134,193,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46,134,193,.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black, transparent);
+  animation: gridPulse 8s ease-in-out infinite;
+}
+@keyframes gridPulse {
+  0%,100% { opacity: .6; }
+  50% { opacity: 1; }
+}
+/* Scanning line */
+.hscan {
+  position: absolute; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--sky), transparent);
+  opacity: 0;
+  animation: scan 6s ease-in-out infinite;
+}
+@keyframes scan {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: .4; }
+  90% { opacity: .4; }
+  100% { top: 100%; opacity: 0; }
+}
+/* Orbs */
+.horb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; animation: orb 16s ease-in-out infinite; }
+.horb1 { width: 700px; height: 700px; background: rgba(27,58,107,.4); top: -200px; right: -150px; }
+.horb2 { width: 500px; height: 500px; background: rgba(192,57,43,.07); bottom: -100px; left: -150px; animation-delay: 7s; }
+.horb3 { width: 400px; height: 400px; background: rgba(46,134,193,.08); top: 20%; left: 5%; animation-delay: 12s; }
+@keyframes orb { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-30px)} }
+
+/* Hero content */
+.hcontent { position: relative; z-index: 2; max-width: 900px; }
+.hey {
+  font-family: var(--fl);
+  font-size: .72rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  opacity: 0;
+  animation: fadeUp .8s .3s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hey::before, .hey::after { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+@keyframes fadeUp { to { opacity: 1; transform: none; } }
+.hlogo {
+  height: 100px; width: auto;
+  margin: 0 auto 2rem;
+  filter: drop-shadow(0 0 30px rgba(192,57,43,.35)) drop-shadow(0 0 70px rgba(27,58,107,.45));
+  animation: lglow 4s ease-in-out infinite alternate, fadeUp .9s .4s cubic-bezier(.16,1,.3,1) forwards;
+  opacity: 0;
+}
+@keyframes lglow {
+  from { filter: drop-shadow(0 0 20px rgba(192,57,43,.2)) drop-shadow(0 0 40px rgba(27,58,107,.3)); }
+  to   { filter: drop-shadow(0 0 50px rgba(192,57,43,.5)) drop-shadow(0 0 100px rgba(27,58,107,.55)); }
+}
+.hh1 {
+  font-family: var(--fd);
+  font-size: clamp(2.6rem, 6vw, 5.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fadeUp .9s .6s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hh1 em { font-style: italic; color: var(--gold); }
+.hsub {
+  font-size: clamp(.92rem, 1.4vw, 1.1rem);
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 2.8rem;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeUp .9s .8s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hbtns {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .9s 1s cubic-bezier(.16,1,.3,1) forwards;
+}
+.bpri {
+  background: var(--red); color: #fff;
+  font-family: var(--fl); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .9rem 2.4rem; border-radius: var(--rad);
+  box-shadow: 0 4px 28px rgba(192,57,43,.4);
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.bpri:hover { background: var(--red2); transform: translateY(-2px); box-shadow: 0 8px 40px rgba(192,57,43,.55); }
+.bgho {
+  border: 1px solid var(--line2); color: var(--gold);
+  font-family: var(--fl); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .9rem 2.4rem; border-radius: var(--rad);
+  transition: all .2s;
+}
+.bgho:hover { background: rgba(201,168,76,.07); border-color: var(--gold); transform: translateY(-2px); }
+
+/* Stats bar */
+.hstats {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  display: flex;
+  border-top: 1px solid var(--line);
+  opacity: 0;
+  animation: fadeUp .9s 1.2s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hstat {
+  flex: 1;
+  padding: 1.1rem 5%;
+  border-right: 1px solid var(--line);
+  transition: background .3s;
+}
+.hstat:last-child { border-right: none; }
+.hstat:hover { background: rgba(201,168,76,.04); }
+.hstat-n {
+  font-family: var(--fd);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: .2rem;
+}
+.hstat-l {
+  font-family: var(--fl);
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Scroll hint */
+.hscroll {
+  position: absolute; bottom: 5.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  font-family: var(--fl); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+  opacity: 0;
+  animation: fadeUp .9s 1.4s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hscline { width: 1px; height: 40px; background: linear-gradient(var(--muted), transparent); animation: sdrop 2s ease-in-out infinite; }
+@keyframes sdrop { 0%,100%{transform:scaleY(1);transform-origin:top} 50%{transform:scaleY(.5);transform-origin:top} }
+
+/* ─────────────────────────────────────────
+   CREDENTIALS TICKER
+───────────────────────────────────────── */
+#credstrip {
+  background: var(--faint);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.cstrip-inner {
+  display: inline-flex; gap: 4rem;
+  animation: ticker 35s linear infinite;
+}
+#credstrip:hover .cstrip-inner { animation-play-state: paused; }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.cstrip-item {
+  font-family: var(--fl);
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex; align-items: center; gap: .5rem;
+  flex-shrink: 0;
+}
+.cstrip-item span { color: var(--gold); }
+
+/* ─────────────────────────────────────────
+   COMMON SECTION
+───────────────────────────────────────── */
+.sec { padding: 7rem 5%; position: relative; }
+.sec-dark { background: var(--navy2); }
+.sec-faint { background: var(--faint); }
+.sec::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(46,134,193,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46,134,193,.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+.slbl {
+  font-family: var(--fl);
+  font-size: .65rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.slbl::before { content: ''; display: block; width: 22px; height: 1px; background: var(--gold); }
+.slbl-c { justify-content: center; }
+.slbl-c::before, .slbl-c::after { content: ''; display: block; width: 22px; height: 1px; background: var(--gold); }
+.sh2 {
+  font-family: var(--fd);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 1.4rem;
+}
+.sh2 span { color: var(--gold); }
+.sh2 em { font-style: italic; color: var(--red); }
+
+/* ─────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-body { font-size: .95rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.2rem; }
+.about-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--rad);
+  overflow: hidden; margin-top: 2rem;
+}
+.astat { background: var(--navy2); padding: 1.2rem 1.4rem; }
+.astat-n {
+  font-family: var(--fd); font-size: 1.8rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: .25rem;
+}
+.astat-l {
+  font-family: var(--fl); font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
+}
+.about-imgs { position: relative; height: 500px; }
+.aimg1 {
+  position: absolute; top: 0; right: 0; width: 78%; height: 72%;
+  object-fit: cover; border-radius: var(--rad);
+  filter: brightness(.8) saturate(.75);
+}
+.aimg2 {
+  position: absolute; bottom: 0; left: 0; width: 52%; height: 48%;
+  object-fit: cover; border-radius: var(--rad);
+  filter: brightness(.8) saturate(.75);
+  border: 3px solid var(--navy);
+}
+.about-badge {
+  position: absolute; bottom: 3.5rem; right: 0;
+  background: var(--navy2); border: 1px solid var(--line2);
+  border-radius: var(--rad); padding: 1rem 1.3rem; max-width: 260px;
+}
+.about-badge-lbl { font-family: var(--fl); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+.about-badge-txt { font-size: .73rem; color: var(--muted); line-height: 1.65; }
+
+/* Mission/Vision cards */
+.mv-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+.mv-card {
+  background: var(--navy2); border: 1px solid var(--line);
+  border-radius: var(--rad); padding: 1.8rem;
+  position: relative; overflow: hidden;
+  transition: border-color .3s, transform .3s;
+}
+.mv-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--sky));
+}
+.mv-card:hover { border-color: var(--line2); transform: translateY(-4px); }
+.mv-ico { font-size: 1.6rem; margin-bottom: 1rem; }
+.mv-title {
+  font-family: var(--fl); font-size: .65rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: .7rem;
+}
+.mv-txt { font-size: .88rem; color: var(--muted); line-height: 1.8; }
+
+/* ─────────────────────────────────────────
+   SERVICES
+───────────────────────────────────────── */
+.svc-hdr { text-align: center; margin-bottom: 3.5rem; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.svc {
+  background: var(--navy2); border: 1px solid var(--line);
+  border-radius: var(--rad); padding: 2rem 1.8rem;
+  position: relative; overflow: hidden;
+  transition: border-color .3s, transform .3s, box-shadow .3s;
+  cursor: default;
+}
+.svc::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--sky));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.16,1,.3,1);
+}
+.svc:hover { border-color: var(--line2); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.3); }
+.svc:hover::after { transform: scaleX(1); }
+.svc-ico { font-size: 1.8rem; display: block; margin-bottom: 1.1rem; }
+.svc-n { font-family: var(--fd); font-size: 1.2rem; font-weight: 700; margin-bottom: .7rem; }
+.svc-b { font-size: .85rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.2rem; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.2rem; }
+.svc-tag {
+  font-family: var(--fl); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
+  background: var(--gold3); border: 1px solid var(--line); color: var(--gold);
+  padding: .2rem .6rem; border-radius: 100px;
+}
+.svc-lnk { font-family: var(--fl); font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); transition: color .2s; }
+.svc-lnk:hover { color: var(--gold2); }
+.svc-num {
+  position: absolute; bottom: .8rem; right: 1.2rem;
+  font-family: var(--fd); font-size: 3rem; font-weight: 700;
+  color: rgba(201,168,76,.05); line-height: 1; pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   PRODUCTS
+───────────────────────────────────────── */
+.prod-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 3rem; }
+.prod-note {
+  background: var(--faint); border-left: 3px solid var(--gold);
+  padding: 1.2rem 1.5rem; border-radius: 0 var(--rad) var(--rad) 0;
+  font-size: .82rem; color: var(--muted); line-height: 1.7; margin-top: 1.4rem;
+}
+.prod-note strong { color: var(--gold); }
+
+/* Category tabs */
+.cat-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.cat-tab {
+  background: var(--navy2); border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--fl); font-size: .66rem; letter-spacing: .16em; text-transform: uppercase;
+  padding: .5rem 1.2rem; border-radius: 100px; cursor: pointer;
+  transition: all .2s;
+}
+.cat-tab.active, .cat-tab:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+
+.prod-cat-section { display: none; }
+.prod-cat-section.visible { display: block; }
+.prod-cat-title {
+  font-family: var(--fl); font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); border-bottom: 1px solid var(--line);
+  padding-bottom: .8rem; margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.prod-cat-title::before { content: ''; display: block; width: 16px; height: 2px; background: var(--gold); }
+
+.prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.pcard {
+  background: var(--navy2); border: 1px solid var(--line);
+  border-radius: var(--rad); padding: 1.4rem;
+  transition: border-color .3s, box-shadow .3s, transform .3s;
+  position: relative; overflow: hidden;
+}
+.pcard::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--sky));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+}
+.pcard:hover { border-color: rgba(201,168,76,.25); box-shadow: 0 8px 30px rgba(0,0,0,.25); transform: translateY(-3px); }
+.pcard:hover::after { transform: scaleX(1); }
+.pcard-name { font-family: var(--fd); font-size: 1.05rem; font-weight: 700; margin-bottom: .35rem; line-height: 1.25; }
+.pcard-origin {
+  font-family: var(--fl); font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--sky); margin-bottom: .9rem;
+  display: flex; align-items: center; gap: .4rem;
+}
+.pcard-origin::before { content: ''; display: block; width: 10px; height: 1px; background: var(--sky); }
+.pcard-rows { display: flex; flex-direction: column; gap: .35rem; }
+.pcard-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .35rem 0; border-bottom: 1px solid var(--line);
+}
+.pcard-row:last-child { border-bottom: none; }
+.pcard-lbl { font-size: .72rem; color: var(--muted); }
+.pcard-val { font-size: .82rem; font-weight: 500; text-align: right; }
+.pcard-price {
+  font-family: var(--fd); font-size: 1.4rem; font-weight: 700; color: var(--gold);
+  margin-top: .8rem; line-height: 1;
+}
+.pcard-price-sub { font-family: var(--fl); font-size: .58rem; letter-spacing: .12em; color: var(--muted); }
+.pcard.featured {
+  border-color: rgba(201,168,76,.25);
+  background: linear-gradient(135deg, var(--navy2), rgba(27,58,107,.3));
+}
+
+/* ─────────────────────────────────────────
+   ROUTE MAP
+───────────────────────────────────────── */
+#rutas { padding: 7rem 5%; }
+.map-wrap {
+  position: relative; margin-top: 3rem;
+  background: var(--navy2); border: 1px solid var(--line);
+  border-radius: var(--rad2); overflow: hidden;
+  padding: 2rem;
+}
+.map-svg { width: 100%; height: auto; display: block; }
+/* Animated ship dots */
+.ship-dot {
+  fill: var(--gold);
+  filter: drop-shadow(0 0 8px rgba(201,168,76,.8));
+}
+.ship-dot2 {
+  fill: var(--sky);
+  filter: drop-shadow(0 0 8px rgba(46,134,193,.8));
+}
+/* Route path animation */
+.route-path {
+  fill: none;
+  stroke-dasharray: 8 6;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  animation: dashMove 3s linear infinite;
+}
+.route-a { stroke: var(--gold); }
+.route-b { stroke: var(--sky); }
+@keyframes dashMove { to { stroke-dashoffset: -140; } }
+
+.map-legend {
+  display: flex; gap: 2rem; justify-content: center;
+  margin-top: 1.5rem; flex-wrap: wrap;
+}
+.map-leg-item { display: flex; align-items: center; gap: .6rem; }
+.map-leg-dot { width: 10px; height: 10px; border-radius: 50%; }
+.map-leg-lbl { font-family: var(--fl); font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+
+/* ─────────────────────────────────────────
+   O2O SECTION
+───────────────────────────────────────── */
+#o2o { padding: 7rem 5%; }
+.o2o-badge {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: rgba(192,57,43,.12); border: 1px solid rgba(192,57,43,.3);
+  border-radius: 100px; padding: .35rem 1rem;
+  font-family: var(--fl); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 1.2rem;
+}
+.o2o-badge::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: blink 1.5s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.o2o-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 2rem; }
+.o2o-steps { display: flex; flex-direction: column; gap: 1rem; }
+.o2o-step {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1.2rem; background: var(--navy2); border: 1px solid var(--line);
+  border-radius: var(--rad); transition: border-color .3s;
+}
+.o2o-step:hover { border-color: var(--line2); }
+.o2o-step-n {
+  width: 32px; height: 32px; flex-shrink: 0;
+  border: 1px solid var(--gold); border-radius: var(--rad);
+  display: grid; place-items: center;
+  font-family: var(--fd); font-size: 1rem; font-weight: 700; color: var(--gold);
+}
+.o2o-step-t { font-family: var(--fd); font-size: .95rem; font-weight: 700; margin-bottom: .3rem; }
+.o2o-step-b { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+.o2o-visual {
+  background: var(--navy2); border: 1px solid var(--line);
+  border-radius: var(--rad2); padding: 2.5rem;
+  text-align: center; position: relative; overflow: hidden;
+}
+.o2o-visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(192,57,43,.08), transparent 70%);
+}
+.o2o-icon { font-size: 5rem; display: block; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+.o2o-coming {
+  font-family: var(--fd); font-size: 2.2rem; font-weight: 700; color: var(--white);
+  margin-bottom: .5rem; position: relative; z-index: 1;
+}
+.o2o-coming-sub { font-size: .88rem; color: var(--muted); line-height: 1.7; position: relative; z-index: 1; }
+
+/* ─────────────────────────────────────────
+   CREDENTIALS
+───────────────────────────────────────── */
+#credenciales { padding: 5rem 5%; }
+.cred-hdr { text-align: center; margin-bottom: 3rem; }
+.cred-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--rad); overflow: hidden; }
+.cred-card {
+  background: var(--navy2); padding: 2rem 1.5rem; text-align: center;
+  transition: background .3s;
+}
+.cred-card:hover { background: rgba(201,168,76,.04); }
+.cred-lbl { font-family: var(--fl); font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+.cred-val { font-family: var(--fd); font-size: 1.3rem; font-weight: 700; color: var(--white); line-height: 1.3; }
+
+/* ─────────────────────────────────────────
+   ALLIANCES
+───────────────────────────────────────── */
+#alianzas { padding: 7rem 5%; }
+.alliance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 2rem; }
+.alliance-items { display: flex; flex-direction: column; gap: 1.2rem; }
+.alli {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1.2rem; border-radius: var(--rad);
+  transition: background .25s;
+}
+.alli:hover { background: rgba(201,168,76,.04); }
+.alli-ico {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: rgba(201,168,76,.1); border: 1px solid var(--line);
+  border-radius: var(--rad); display: grid; place-items: center; font-size: 1rem;
+}
+.alli-n { font-family: var(--fd); font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
+.alli-b { font-size: .83rem; color: var(--muted); line-height: 1.7; }
+.alliance-quote {
+  background: var(--navy2); border: 1px solid var(--line);
+  border-radius: var(--rad2); padding: 2.5rem;
+  position: relative;
+}
+.alliance-quote::before {
+  content: '"';
+  font-family: var(--fd); font-size: 8rem; color: var(--gold); opacity: .12;
+  position: absolute; top: -1rem; left: 1.5rem; line-height: 1;
+}
+.aq-text {
+  font-family: var(--fd); font-size: 1.4rem; font-style: italic; font-weight: 600;
+  line-height: 1.5; color: var(--white); margin-bottom: 1.5rem; position: relative; z-index: 1;
+}
+.aq-attr { font-family: var(--fl); font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+
+/* ─────────────────────────────────────────
+   CONTACT
+───────────────────────────────────────── */
+#contacto { padding: 7rem 5%; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.cinfo-items { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+.cinfo-item { display: flex; gap: 1rem; align-items: flex-start; }
+.cinfo-ico {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: rgba(201,168,76,.08); border: 1px solid var(--line);
+  border-radius: var(--rad); display: grid; place-items: center; font-size: .9rem;
+}
+.cinfo-lbl { font-family: var(--fl); font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
+.cinfo-val { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+.cform {
+  background: var(--navy2); border: 1px solid var(--line);
+  border-radius: var(--rad); padding: 2.2rem;
+}
+.cform-title { font-family: var(--fd); font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; }
+.cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cf-full { grid-column: span 2; }
+.cf-group { display: flex; flex-direction: column; gap: .4rem; }
+.cf-label { font-family: var(--fl); font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.cf-input, .cf-select, .cf-textarea {
+  background: var(--navy); border: 1px solid var(--line);
+  color: var(--white); font-family: var(--fb); font-size: .88rem;
+  padding: .65rem .9rem; border-radius: var(--rad);
+  outline: none; transition: border-color .2s; width: 100%;
+}
+.cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-color: var(--gold); }
+.cf-select option { background: var(--navy); }
+.cf-textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+.cf-submit {
+  width: 100%; background: var(--red); color: #fff;
+  font-family: var(--fl); font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+  padding: .85rem; border-radius: var(--rad); border: none; cursor: pointer;
+  margin-top: .5rem; transition: background .2s, transform .2s;
+}
+.cf-submit:hover { background: var(--red2); transform: translateY(-1px); }
+.cf-success { display: none; color: var(--gold); font-size: .85rem; margin-top: .8rem; text-align: center; }
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer {
+  background: var(--faint);
+  border-top: 1px solid var(--line);
+  padding: 4rem 5% 2rem;
+}
+.foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.flogo img { height: 44px; margin-bottom: 1rem; }
+.fdesc { font-size: .82rem; color: var(--muted); line-height: 1.75; max-width: 280px; }
+.fcol-title {
+  font-family: var(--fl); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid var(--line); padding-bottom: .6rem;
+}
+.fcol a, .fcol p { display: block; font-size: .8rem; color: var(--muted); line-height: 2.1; transition: color .2s; }
+.fcol a:hover { color: var(--white); }
+.foot-social { display: flex; gap: .8rem; margin-top: .8rem; }
+.fsoc {
+  width: 32px; height: 32px;
+  background: rgba(201,168,76,.08); border: 1px solid var(--line);
+  border-radius: var(--rad); display: grid; place-items: center;
+  font-size: .9rem; transition: background .2s, border-color .2s;
+}
+.fsoc:hover { background: rgba(201,168,76,.15); border-color: var(--line2); }
+.fbar {
+  border-top: 1px solid var(--line); padding-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.fleg { font-size: .72rem; color: var(--muted); }
+.freg { font-size: .7rem; color: var(--muted); text-align: right; }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .svc-grid { grid-template-columns: 1fr 1fr; }
+  .prod-grid { grid-template-columns: 1fr 1fr; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid, .o2o-grid, .contact-grid, .alliance-grid, .prod-intro { grid-template-columns: 1fr; }
+  .mv-grid { grid-template-columns: 1fr 1fr; }
+  .cred-grid { grid-template-columns: 1fr 1fr; }
+  .about-imgs { height: 320px; }
+}
+@media (max-width: 768px) {
+  .nlinks, .lang-toggle { display: none; }
+  .hbg { display: flex; }
+  .svc-grid, .prod-grid, .mv-grid { grid-template-columns: 1fr; }
+  .cred-grid { grid-template-columns: 1fr 1fr; }
+  .hstats { flex-direction: column; }
+  .hstat { border-right: none; border-bottom: 1px solid var(--line); }
+  .foot-grid { grid-template-columns: 1fr; }
+  .cf-grid { grid-template-columns: 1fr; }
+  .cf-full { grid-column: span 1; }
+  .freg { text-align: left; }
+}
+
+/* ── I18N ── */
+[data-lang="es"] [data-en], [data-lang="es"] [data-fr] { display: none; }
+[data-lang="en"] [data-es], [data-lang="en"] [data-fr] { display: none; }
+[data-lang="fr"] [data-es], [data-lang="fr"] [data-en] { display: none; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   TEAM SECTION — Elegant, sober design
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── TEAM HEADER: ALWAYS VISIBLE — NO ANIMATION, NO OBSERVER, NO DELAY ── */
+#equipo .team-section-label,
+#equipo .team-section-title,
+#equipo .team-section-sub {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+  visibility: visible !important;
+}
+
+/* ── sec-pad: alias of .sec for sections that bypass the global class ── */
+.sec-pad {
+  padding: 7rem 5%;
+  position: relative;
+}
+.sec-pad::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(46,134,193,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46,134,193,.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.sec-equipo-bg {
+  background: linear-gradient(160deg, var(--navy) 0%, #0a1628 100%);
+  border-top: 1px solid var(--line);
+}
+
+/* ── Section header ── */
+.team-section-label {
+  font-family: var(--fl);
+  font-size: .65rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+.team-section-title {
+  font-family: var(--fd);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.team-section-title span { color: var(--gold); font-style: italic; }
+.team-section-sub {
+  font-size: .92rem;
+  color: var(--muted);
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto 4rem;
+  line-height: 1.8;
+}
+
+/* ── CEO — centrado, foto rectangular con borde dorado ── */
+.team-ceo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+.team-ceo-card {
+  width: 340px;
+  text-align: center;
+}
+.team-ceo-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border: 1px solid rgba(201,168,76,.35);
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+.team-ceo-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(0%);
+  transition: filter .6s ease, transform .6s ease;
+  display: block;
+}
+.team-ceo-card:hover .team-ceo-photo img {
+  filter: grayscale(80%);
+  transform: scale(1.03);
+}
+.team-ceo-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.team-ceo-name {
+  font-family: var(--fd);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .5rem;
+}
+.team-ceo-role {
+  font-family: var(--fl);
+  font-size: .65rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── Team grid — 3 cols ── */
+.team-members-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+.team-member-card {
+  text-align: center;
+  transition: transform .35s ease;
+}
+.team-member-card:hover { transform: translateY(-6px); }
+
+.team-member-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin-bottom: 1.2rem;
+  position: relative;
+  transition: border-color .35s ease;
+}
+.team-member-card:hover .team-member-photo { border-color: rgba(201,168,76,.4); }
+.team-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(0%);
+  transition: filter .5s ease, transform .5s ease;
+  display: block;
+}
+.team-member-card:hover .team-member-photo img {
+  filter: grayscale(100%);
+  transform: scale(1.04);
+}
+.team-member-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.team-member-card:hover .team-member-photo::after { opacity: 1; }
+
+.team-member-name {
+  font-family: var(--fd);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .4rem;
+  line-height: 1.3;
+}
+.team-member-role {
+  font-family: var(--fl);
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── Last row of 2: center them ── */
+.team-members-grid .team-member-card:nth-child(7) { grid-column: 2; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .team-members-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .team-members-grid .team-member-card:nth-child(7) { grid-column: auto; }
+  .team-ceo-card { width: 280px; }
+}
+@media (max-width: 560px) {
+  .team-members-grid { grid-template-columns: 1fr; max-width: 320px; }
+  .team-ceo-card { width: 260px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ MOBILE NAV ══════════ -->
+<div class="mnav" id="mnav">
+  <button class="mclose" id="mclose" aria-label="Cerrar">×</button>
+  <a href="#about"       onclick="mn()"><span data-es>Nosotros</span><span data-en>About</span><span data-fr>À Propos</span></a>
+  <a href="#servicios"   onclick="mn()"><span data-es>Operaciones</span><span data-en>Operations</span><span data-fr>Opérations</span></a>
+  <a href="#productos"   onclick="mn()"><span data-es>Productos</span><span data-en>Products</span><span data-fr>Produits</span></a>
+  <a href="#rutas"       onclick="mn()"><span data-es>Rutas</span><span data-en>Routes</span><span data-fr>Routes</span></a>
+  
+  <a href="#alianzas"    onclick="mn()"><span data-es>Alianzas</span><span data-en>Alliances</span><span data-fr>Alliances</span></a>
+  <a href="#contacto"    onclick="mn()"><span data-es>Contacto</span><span data-en>Contact</span><span data-fr>Contact</span></a>
+</div>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <a href="#hero" class="nlogo">
+    <img src="assets/LOGO_DIJO_AEROMARITIME.png" alt="DIJO Aeromaritime S.A.">
+  </a>
+  <div class="nlinks">
+    <a href="#about"><span data-es>Nosotros</span><span data-en>About</span><span data-fr>À Propos</span></a>
+    <a href="#servicios"><span data-es>Operaciones</span><span data-en>Operations</span><span data-fr>Opérations</span></a>
+    <a href="#productos"><span data-es>Productos</span><span data-en>Products</span><span data-fr>Produits</span></a>
+    <a href="#rutas"><span data-es>Rutas</span><span data-en>Routes</span><span data-fr>Routes</span></a>
+    <a href="#o2o">O2O</a>
+    <a href="#equipo" data-es="Equipo" data-en="Team" data-fr="Équipe">Equipo</a>
+    <a href="#alianzas"><span data-es>Alianzas</span><span data-en>Alliances</span><span data-fr>Alliances</span></a>
+    <a href="#contacto" class="ncta"><span data-es>Cotizar</span><span data-en>Quote</span><span data-fr>Devis</span></a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lng="es">ES</button>
+      <button class="lang-btn" data-lng="en">EN</button>
+      <button class="lang-btn" data-lng="fr">FR</button>
+    </div>
+  </div>
+  <button class="hbg" id="hbg" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <div class="hbg-wrap">
+    <img class="hbg-img" src="assets/hero-contenedores.jpg" alt="DIJO Aeromaritime operations">
+    <div class="hbg-grad"></div>
+    <div class="hgrid"></div>
+    <div class="hscan"></div>
+  </div>
+  <div class="horb horb1"></div>
+  <div class="horb horb2"></div>
+  <div class="horb horb3"></div>
+
+  <div class="hcontent">
+    <p class="hey">
+      <span data-es>Zona Libre de Colón · Panamá · Est. 2022</span>
+      <span data-en>Colón Free Zone · Panama · Est. 2022</span>
+      <span data-fr>Zone Franche de Colón · Panama · Fondée 2022</span>
+    </p>
+
+    <img class="hlogo" src="assets/LOGO_DIJO_AEROMARITIME.png" alt="DIJO Aeromaritime">
+
+    <h1 class="hh1">
+      <span data-es>Navegando el nuevo orden,<br><em>conectando tu mundo.</em></span>
+      <span data-en>Navigating the new order,<br><em>connecting your world.</em></span>
+      <span data-fr>Naviguer le nouvel ordre,<br><em>connecter votre monde.</em></span>
+    </h1>
+    <p class="hsub">
+      <span data-es>Operador estratégico de comercio internacional desde el segundo hub de libre comercio más grande del mundo. Alimentos, combustibles, farmacéuticos y mercancía general al Caribe y América Latina.</span>
+      <span data-en>Strategic international trade operator from the world's second largest free trade hub. Food, fuels, pharmaceuticals and general merchandise to the Caribbean and Latin America.</span>
+      <span data-fr>Opérateur stratégique de commerce international depuis le deuxième plus grand hub de libre-échange au monde. Alimentation, carburants, produits pharmaceutiques et marchandises générales vers les Caraïbes et l'Amérique latine.</span>
+    </p>
+    <div class="hbtns">
+      <a href="#productos" class="bpri">
+        <span data-es>Ver Catálogo</span>
+        <span data-en>View Catalogue</span>
+        <span data-fr>Voir le Catalogue</span>
+      </a>
+      <a href="#contacto" class="bgho">
+        <span data-es>Solicitar Cotización</span>
+        <span data-en>Request a Quote</span>
+        <span data-fr>Demander un Devis</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hscroll" aria-hidden="true">
+    <div class="hscline"></div>
+    <span data-es>Explorar</span><span data-en>Explore</span><span data-fr>Explorer</span>
+  </div>
+
+  <div class="hstats">
+    <div class="hstat">
+      <div class="hstat-n">ZLC</div>
+      <div class="hstat-l"><span data-es>Operador Registrado</span><span data-en>Registered Operator</span><span data-fr>Opérateur Enregistré</span></div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">5+</div>
+      <div class="hstat-l"><span data-es>Líneas de Producto</span><span data-en>Product Lines</span><span data-fr>Lignes de Produits</span></div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">20'·40'</div>
+      <div class="hstat-l"><span data-es>TEU / FEU Mínimo</span><span data-en>Min. Container</span><span data-fr>Conteneur Minimum</span></div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-n">CIF</div>
+      <div class="hstat-l"><span data-es>Entrega a destino</span><span data-en>Destination delivery</span><span data-fr>Livraison à destination</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CREDENTIALS TICKER ══════════ -->
+<div id="credstrip" aria-hidden="true">
+  <div class="cstrip-inner">
+    <div class="cstrip-item"><span>RUC</span> 155725880-2-2022 DV5</div>
+    <div class="cstrip-item"><span>Clave Zolicol</span> 8972</div>
+    <div class="cstrip-item"><span>Licencia Internacional de Proveedor</span> PA-1678</div>
+    <div class="cstrip-item"><span>Bodegas TCL</span> France Field, Colón</div>
+    <div class="cstrip-item"><span>Incoterms</span> CIF · FOB · CFR</div>
+    <div class="cstrip-item"><span>Destinos</span> Cuba · Haití · Caribe · A. Latina</div>
+    <div class="cstrip-item"><span>Líneas</span> Alimentos · Combustibles · Farmacéuticos · Licores · Cigarrillos</div>
+    <div class="cstrip-item"><span>Booking</span> 5 días · Tránsito 10–30 días</div>
+    <!-- Duplicate for loop -->
+    <div class="cstrip-item"><span>RUC</span> 155725880-2-2022 DV5</div>
+    <div class="cstrip-item"><span>Clave Zolicol</span> 8972</div>
+    <div class="cstrip-item"><span>Licencia Internacional de Proveedor</span> PA-1678</div>
+    <div class="cstrip-item"><span>Bodegas TCL</span> France Field, Colón</div>
+    <div class="cstrip-item"><span>Incoterms</span> CIF · FOB · CFR</div>
+    <div class="cstrip-item"><span>Destinos</span> Cuba · Haití · Caribe · A. Latina</div>
+    <div class="cstrip-item"><span>Líneas</span> Alimentos · Combustibles · Farmacéuticos · Licores · Cigarrillos</div>
+    <div class="cstrip-item"><span>Booking</span> 5 días · Tránsito 10–30 días</div>
+  </div>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about" class="sec">
+  <div class="about-grid">
+    <div class="rl">
+      <div class="slbl">
+        <span data-es>Quiénes Somos</span>
+        <span data-en>Who We Are</span>
+        <span data-fr>Qui Sommes-Nous</span>
+      </div>
+      <h2 class="sh2">
+        <span data-es>Inteligencia logística<br>para un mundo <span>en transformación</span></span>
+        <span data-en>Logistics intelligence<br>for a world <span>in transformation</span></span>
+        <span data-fr>Intelligence logistique<br>pour un monde <span>en transformation</span></span>
+      </h2>
+      <p class="about-body">
+        <span data-es>DIJO Aeromaritime S.A. es un operador estratégico de comercio internacional con sede en la Zona Libre de Colón (ZLC), Panamá — el segundo hub de libre comercio más grande del mundo. Desde nuestra posición geográfica privilegiada — contiguos al Canal de Panamá — gestionamos importaciones, exportaciones, consolidaciones y tránsito de mercancía para mercados del Caribe, Cuba y Haití.</span>
+        <span data-en>DIJO Aeromaritime S.A. is a strategic international trade operator based in the Colón Free Zone (ZLC), Panama — the world's second largest free trade hub. From our privileged geographic position — adjacent to the Panama Canal — we manage imports, exports, consolidations and cargo transit for Caribbean, Cuban and Haitian markets.</span>
+        <span data-fr>DIJO Aeromaritime S.A. est un opérateur stratégique de commerce international basé dans la Zone Franche de Colón (ZLC), Panama — le deuxième plus grand hub de libre-échange au monde. Depuis notre position géographique privilégiée — adjacente au Canal de Panama — nous gérons importations, exportations, consolidations et transit de marchandises pour les marchés des Caraïbes, de Cuba et d'Haïti.</span>
+      </p>
+      <p class="about-body">
+        <span data-es>Operamos con licencia Zolicol activa para mercancía general, licores, cigarrillos y farmacéuticos. Nuestro modelo integra resiliencia operativa, trazabilidad documental y estructuras de escrow diseñadas para mercados de alta exigencia regulatoria.</span>
+        <span data-en>We hold an active Zolicol license covering general merchandise, spirits, tobacco and pharmaceuticals. Our model integrates operational resilience, documentary traceability and escrow structures designed for highly regulated markets.</span>
+        <span data-fr>Nous détenons une licence Zolicol active couvrant les marchandises générales, les spiritueux, le tabac et les produits pharmaceutiques. Notre modèle intègre la résilience opérationnelle, la traçabilité documentaire et des structures d'entiercement conçues pour les marchés hautement réglementés.</span>
+      </p>
+      <div class="about-stats rv d2">
+        <div class="astat">
+          <div class="astat-n" data-count="2022">2022</div>
+          <div class="astat-l"><span data-es>Año de registro ZLC</span><span data-en>ZLC Registration</span><span data-fr>Enregistrement ZLC</span></div>
+        </div>
+        <div class="astat">
+          <div class="astat-n">5+</div>
+          <div class="astat-l"><span data-es>Líneas activas</span><span data-en>Active lines</span><span data-fr>Lignes actives</span></div>
+        </div>
+        <div class="astat">
+          <div class="astat-n">B2B</div>
+          <div class="astat-l"><span data-es>Modelo comercial</span><span data-en>Business model</span><span data-fr>Modèle commercial</span></div>
+        </div>
+        <div class="astat">
+          <div class="astat-n">O2O</div>
+          <div class="astat-l"><span data-es>Expansión digital</span><span data-en>Digital expansion</span><span data-fr>Expansion numérique</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rr">
+      <div class="about-imgs">
+        <img class="aimg1" src="assets/warehouse-interior.jpg" alt="DIJO warehouse operations — Zona Libre de Colón">
+        <img class="aimg2" src="assets/container-dock.jpg" alt="DIJO container dock">
+        <div class="about-badge">
+          <div class="about-badge-lbl">
+            <span data-es>Registro Oficial · ZLC</span>
+            <span data-en>Official ZLC Registration</span>
+            <span data-fr>Enregistrement Officiel ZLC</span>
+          </div>
+          <div class="about-badge-txt">
+            RUC 155725880-2-2022 DV5<br>
+            Clave Zolicol 8972<br>
+            Lic. Int. Proveedor PA-1678<br>
+            Bodegas TCL · France Field · Colón
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission / Vision / Value -->
+  <div class="mv-grid">
+    <div class="mv-card rv d1">
+      <div class="mv-ico">🎯</div>
+      <div class="mv-title"><span data-es>Misión</span><span data-en>Mission</span><span data-fr>Mission</span></div>
+      <p class="mv-txt">
+        <span data-es>Ser el puente operativo preferido entre el mercado global y el Caribe, suministrando bienes esenciales con eficiencia, trazabilidad e integridad documental de nivel internacional.</span>
+        <span data-en>To be the preferred operational bridge between the global market and the Caribbean, supplying essential goods with efficiency, traceability and international-grade documentary integrity.</span>
+        <span data-fr>Être le pont opérationnel privilégié entre le marché mondial et les Caraïbes, en fournissant des biens essentiels avec efficacité, traçabilité et intégrité documentaire de niveau international.</span>
+      </p>
+    </div>
+    <div class="mv-card rv d2">
+      <div class="mv-ico">🌐</div>
+      <div class="mv-title"><span data-es>Visión</span><span data-en>Vision</span><span data-fr>Vision</span></div>
+      <p class="mv-txt">
+        <span data-es>Consolidarnos como el operador logístico y comercial de referencia del Caribe, integrando tecnología, sostenibilidad y alianzas estratégicas para construir una cadena de suministro resiliente y digital.</span>
+        <span data-en>To consolidate as the reference logistics and commercial operator of the Caribbean, integrating technology, sustainability and strategic alliances to build a resilient, digital supply chain.</span>
+        <span data-fr>Nous consolider comme l'opérateur logistique et commercial de référence des Caraïbes, en intégrant technologie, durabilité et alliances stratégiques pour construire une chaîne d'approvisionnement résiliente et numérique.</span>
+      </p>
+    </div>
+    <div class="mv-card rv d3">
+      <div class="mv-ico">⚡</div>
+      <div class="mv-title"><span data-es>Valor Agregado</span><span data-en>Value Proposition</span><span data-fr>Valeur Ajoutée</span></div>
+      <p class="mv-txt">
+        <span data-es>Documentación internacional completa, mecanismos de escrow, precios CIF competitivos, alianzas con productores primarios y profundo conocimiento de los mercados regulados del Caribe.</span>
+        <span data-en>Complete international documentation, escrow mechanisms, competitive CIF pricing, alliances with primary producers and deep knowledge of regulated Caribbean markets.</span>
+        <span data-fr>Documentation internationale complète, mécanismes d'entiercement, prix CIF compétitifs, alliances avec des producteurs primaires et connaissance approfondie des marchés réglementés des Caraïbes.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CREDENTIALS ══════════ -->
+<section id="credenciales" class="sec sec-faint">
+  <div class="cred-hdr rv">
+    <div class="slbl slbl-c">
+      <span data-es>Respaldo Legal &amp; Operativo</span>
+      <span data-en>Legal &amp; Operational Standing</span>
+      <span data-fr>Statut Légal &amp; Opérationnel</span>
+    </div>
+    <h2 class="sh2" style="text-align:center">
+      <span data-es>Registros que <span>certifican</span></span>
+      <span data-en>Registrations that <span>certify</span></span>
+      <span data-fr>Enregistrements qui <span>certifient</span></span>
+    </h2>
+  </div>
+  <div class="cred-grid rv d1">
+    <div class="cred-card">
+      <div class="cred-lbl">RUC</div>
+      <div class="cred-val">155725880-2-2022 DV5</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-lbl">Clave Zolicol</div>
+      <div class="cred-val">8972</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-lbl">
+        <span data-es>Licencia Internacional de Proveedor</span>
+        <span data-en>International Supplier Licence</span>
+        <span data-fr>Licence Internationale Fournisseur</span>
+      </div>
+      <div class="cred-val">PA-1678</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-lbl">
+        <span data-es>Sede</span>
+        <span data-en>Headquarters</span>
+        <span data-fr>Siège</span>
+      </div>
+      <div class="cred-val">Bodegas TCL · France Field · ZLC</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SERVICES ══════════ -->
+<section id="servicios" class="sec sec-dark">
+  <div class="svc-hdr rv">
+    <div class="slbl slbl-c">
+      <span data-es>Líneas de Operación</span>
+      <span data-en>Lines of Operation</span>
+      <span data-fr>Lignes d'Opération</span>
+    </div>
+    <h2 class="sh2" style="text-align:center">
+      <span data-es>Lo que <span>hacemos</span></span>
+      <span data-en>What we <span>do</span></span>
+      <span data-fr>Ce que <span>nous faisons</span></span>
+    </h2>
+    <p style="color:var(--muted);text-align:center;max-width:580px;margin:0 auto;font-size:.92rem;line-height:1.8">
+      <span data-es>Cada operación se ejecuta con documentación certificada, estructuras de escrow y protocolos de cumplimiento para los mercados más exigentes del Caribe.</span>
+      <span data-en>Every operation is executed with certified documentation, escrow structures and compliance protocols for the most demanding markets in the Caribbean.</span>
+      <span data-fr>Chaque opération est exécutée avec une documentation certifiée, des structures d'entiercement et des protocoles de conformité pour les marchés les plus exigeants des Caraïbes.</span>
+    </p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc rv d1">
+      <span class="svc-ico">🌾</span>
+      <div class="svc-n"><span data-es>Alimentos &amp; Commodities</span><span data-en>Food &amp; Commodities</span><span data-fr>Alimentation &amp; Matières Premières</span></div>
+      <p class="svc-b"><span data-es>Arroz, azúcar, harina, frijoles, leche en polvo, pasta, aceites, refrigerados. Precios CIF desde Brasil, Colombia y Guyana.</span><span data-en>Rice, sugar, flour, beans, powdered milk, pasta, oils, refrigerated products. CIF prices from Brazil, Colombia and Guyana.</span><span data-fr>Riz, sucre, farine, haricots, lait en poudre, pâtes, huiles, produits réfrigérés. Prix CIF depuis le Brésil, la Colombie et la Guyane.</span></p>
+      <div class="svc-tags"><span class="svc-tag">CIF · FOB</span><span class="svc-tag">20' · 40'</span><span class="svc-tag"><span data-es>Docs completos</span><span data-en>Full docs</span><span data-fr>Docs complets</span></span></div>
+      <a href="#productos" class="svc-lnk"><span data-es>Ver catálogo →</span><span data-en>View catalogue →</span><span data-fr>Voir catalogue →</span></a>
+      <div class="svc-num">01</div>
+    </div>
+    <div class="svc rv d2">
+      <span class="svc-ico">⛽</span>
+      <div class="svc-n"><span data-es>Combustibles &amp; Energía</span><span data-en>Fuels &amp; Energy</span><span data-fr>Carburants &amp; Énergie</span></div>
+      <p class="svc-b"><span data-es>ULSD ASTM D975, Diesel No. 2 Low Sulfur, Jet A-1. Operaciones CIF/CFR con escrow financiero y protocolos de confidencialidad bilateral.</span><span data-en>ULSD ASTM D975, Diesel No. 2 Low Sulfur, Jet A-1. CIF/CFR operations with financial escrow and bilateral confidentiality protocols.</span><span data-fr>ULSD ASTM D975, Diesel No. 2 Low Sulfur, Jet A-1. Opérations CIF/CFR avec entiercement financier et protocoles de confidentialité bilatéraux.</span></p>
+      <div class="svc-tags"><span class="svc-tag">Escrow</span><span class="svc-tag">ASTM D975</span><span class="svc-tag">NDA</span></div>
+      <a href="#contacto" class="svc-lnk"><span data-es>Consultar →</span><span data-en>Enquire →</span><span data-fr>Consulter →</span></a>
+      <div class="svc-num">02</div>
+    </div>
+    <div class="svc rv d3">
+      <span class="svc-ico">💊</span>
+      <div class="svc-n"><span data-es>Farmacéuticos &amp; Salud</span><span data-en>Pharmaceuticals &amp; Health</span><span data-fr>Pharmaceutique &amp; Santé</span></div>
+      <p class="svc-b"><span data-es>Importación, almacenamiento y re-exportación de productos farmacéuticos con licencia Zolicol activa, cadena de frío y trazabilidad sanitaria completa.</span><span data-en>Import, storage and re-export of pharmaceutical products with active Zolicol license, cold chain and complete sanitary traceability.</span><span data-fr>Importation, stockage et réexportation de produits pharmaceutiques avec licence Zolicol active, chaîne du froid et traçabilité sanitaire complète.</span></p>
+      <div class="svc-tags"><span class="svc-tag">Zolicol</span><span class="svc-tag"><span data-es>Cadena frío</span><span data-en>Cold chain</span><span data-fr>Chaîne du froid</span></span></div>
+      <a href="#contacto" class="svc-lnk"><span data-es>Consultar →</span><span data-en>Enquire →</span><span data-fr>Consulter →</span></a>
+      <div class="svc-num">03</div>
+    </div>
+    <div class="svc rv d4">
+      <span class="svc-ico">🚢</span>
+      <div class="svc-n"><span data-es>Logística Multimodal</span><span data-en>Multimodal Logistics</span><span data-fr>Logistique Multimodale</span></div>
+      <p class="svc-b"><span data-es>Gestión de TEU/FEU, coordinación marítima, consolidación en ZLC, documentación de exportación e importación, rastreo de carga y seguimiento operativo.</span><span data-en>TEU/FEU management, maritime coordination, ZLC consolidation, export and import documentation, cargo tracking and operational monitoring.</span><span data-fr>Gestion TEU/FEU, coordination maritime, consolidation en ZLC, documentation import/export, suivi de fret et surveillance opérationnelle.</span></p>
+      <div class="svc-tags"><span class="svc-tag">TEU · FEU</span><span class="svc-tag">BL · Packing List</span></div>
+      <a href="#rutas" class="svc-lnk"><span data-es>Ver rutas →</span><span data-en>View routes →</span><span data-fr>Voir routes →</span></a>
+      <div class="svc-num">04</div>
+    </div>
+    <div class="svc rv d5">
+      <span class="svc-ico">🍷</span>
+      <div class="svc-n"><span data-es>Licores &amp; Cigarrillos</span><span data-en>Spirits &amp; Tobacco</span><span data-fr>Spiritueux &amp; Tabac</span></div>
+      <p class="svc-b"><span data-es>Operación con licencia Zolicol plena para licores y cigarrillos. Redistribución para mercados del Caribe con Incoterms competitivos y documentación aduanal completa.</span><span data-en>Full Zolicol license operation for spirits and tobacco. Caribbean market redistribution with competitive Incoterms and complete customs documentation.</span><span data-fr>Opération sous licence Zolicol complète pour spiritueux et tabac. Redistribution sur les marchés caribéens avec des Incoterms compétitifs et une documentation douanière complète.</span></p>
+      <div class="svc-tags"><span class="svc-tag">Zolicol</span><span class="svc-tag">Caribe</span></div>
+      <a href="#contacto" class="svc-lnk"><span data-es>Cotizar →</span><span data-en>Quote →</span><span data-fr>Devis →</span></a>
+      <div class="svc-num">05</div>
+    </div>
+    <div class="svc rv d6">
+      <span class="svc-ico">🤝</span>
+      <div class="svc-n"><span data-es>Alianzas B2B &amp; Consultoría</span><span data-en>B2B Alliances &amp; Advisory</span><span data-fr>Alliances B2B &amp; Conseil</span></div>
+      <p class="svc-b"><span data-es>Estructuramos acuerdos tripartitos, contratos de representación y alianzas para operadores que buscan acceso al mercado de la ZLC y al Caribe regulado.</span><span data-en>We structure tripartite agreements, representation contracts and alliances for operators seeking access to the ZLC market and regulated Caribbean.</span><span data-fr>Nous structurons des accords tripartites, des contrats de représentation et des alliances pour les opérateurs cherchant à accéder au marché de la ZLC et aux Caraïbes réglementées.</span></p>
+      <div class="svc-tags"><span class="svc-tag">NDA</span><span class="svc-tag">NCNDA</span><span class="svc-tag">IMFPA</span></div>
+      <a href="#contacto" class="svc-lnk"><span data-es>Conversar →</span><span data-en>Let's talk →</span><span data-fr>Parlons-en →</span></a>
+      <div class="svc-num">06</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRODUCTS ══════════ -->
+<section id="productos" class="sec">
+  <div class="prod-intro">
+    <div class="rl">
+      <div class="slbl">
+        <span data-es>Catálogo de Productos B2B</span>
+        <span data-en>B2B Product Catalogue</span>
+        <span data-fr>Catalogue Produits B2B</span>
+      </div>
+      <h2 class="sh2">
+        <span data-es>Oferta <span>disponible</span> ahora</span>
+        <span data-en>Available <span>now</span></span>
+        <span data-fr>Disponible <span>maintenant</span></span>
+      </h2>
+      <p style="color:var(--muted);font-size:.93rem;line-height:1.85;margin-top:.8rem">
+        <span data-es>Todos los precios son CIF Puerto El Mariel, Cuba. Pedido mínimo: 1 contenedor de 20'. Para otros destinos (Haití, Caribe, Colombia) consultar directamente — ajustamos Incoterm y flete.</span>
+        <span data-en>All prices are CIF Puerto El Mariel, Cuba. Minimum order: 1 × 20' container. For other destinations (Haiti, Caribbean, Colombia) please enquire — we adjust Incoterm and freight.</span>
+        <span data-fr>Tous les prix sont CIF Puerto El Mariel, Cuba. Commande minimale: 1 conteneur de 20'. Pour d'autres destinations (Haïti, Caraïbes, Colombie), veuillez nous contacter — nous ajustons Incoterm et fret.</span>
+      </p>
+    </div>
+    <div class="rr">
+      <div class="prod-note">
+        <strong data-es>⏱ Tiempos de entrega</strong>
+        <strong data-en>⏱ Delivery Times</strong>
+        <strong data-fr>⏱ Délais de Livraison</strong><br><br>
+        <span data-es>🇧🇷 Origen <strong>Brasil</strong>: 5 días booking + 30 días travesía<br>🇨🇴 Origen <strong>Colombia / Caribe</strong>: 5 días booking + 10 días travesía<br><br>Incluido: BL · Certificado de origen · Certificado de calidad · Packing list · Factura comercial</span>
+        <span data-en>🇧🇷 Origin <strong>Brazil</strong>: 5 days booking + 30 days transit<br>🇨🇴 Origin <strong>Colombia / Caribbean</strong>: 5 days booking + 10 days transit<br><br>Included: BL · Certificate of origin · Quality certificate · Packing list · Commercial invoice</span>
+        <span data-fr>🇧🇷 Origine <strong>Brésil</strong>: 5 jours réservation + 30 jours transit<br>🇨🇴 Origine <strong>Colombie / Caraïbes</strong>: 5 jours réservation + 10 jours transit<br><br>Inclus: BL · Certificat d'origine · Certificat de qualité · Liste de colisage · Facture commerciale</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="cat-tabs rv">
+    <button class="cat-tab active" data-cat="secos"><span data-es>🌾 Secos &amp; Granos</span><span data-en>🌾 Dry &amp; Grains</span><span data-fr>🌾 Secs &amp; Grains</span></button>
+    <button class="cat-tab" data-cat="aceites"><span data-es>🫙 Aceites &amp; Bebidas</span><span data-en>🫙 Oils &amp; Drinks</span><span data-fr>🫙 Huiles &amp; Boissons</span></button>
+    <button class="cat-tab" data-cat="refrigerados"><span data-es>❄️ Refrigerados</span><span data-en>❄️ Refrigerated</span><span data-fr>❄️ Réfrigérés</span></button>
+    <button class="cat-tab" data-cat="higiene"><span data-es>🧴 Higiene</span><span data-en>🧴 Hygiene</span><span data-fr>🧴 Hygiène</span></button>
+    <button class="cat-tab" data-cat="azucar"><span data-es>⭐ Azúcar Premium</span><span data-en>⭐ Premium Sugar</span><span data-fr>⭐ Sucre Premium</span></button>
+    <button class="cat-tab" data-cat="combustibles"><span data-es>⛽ Combustibles</span><span data-en>⛽ Fuels</span><span data-fr>⛽ Carburants</span></button>
+  </div>
+
+  <!-- CAT: SECOS -->
+  <div class="prod-cat-section visible" id="cat-secos">
+    <div class="prod-cat-title"><span data-es>Productos Secos &amp; Granos</span><span data-en>Dry Goods &amp; Grains</span><span data-fr>Produits Secs &amp; Grains</span></div>
+    <div class="prod-grid">
+      <div class="pcard rv d1">
+        <div class="pcard-name"><span data-es>Arroz Tipo 1 y 3</span><span data-en>Rice Type 1 &amp; 3</span><span data-fr>Riz Type 1 et 3</span></div>
+        <div class="pcard-origin">Guyana</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Bolsa 50 kg</span><span data-en>50 kg bag</span><span data-fr>Sac 50 kg</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' TM</span><span class="pcard-val">25 TM</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / TM</span><span data-en>Price / MT</span><span data-fr>Prix / TM</span></span><span class="pcard-val">$965 USD</span></div>
+        </div>
+        <div class="pcard-price">$24,115<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d2">
+        <div class="pcard-name"><span data-es>Arroz Tipo 1 y 3</span><span data-en>Rice Type 1 &amp; 3</span><span data-fr>Riz Type 1 et 3</span></div>
+        <div class="pcard-origin">Cartagena, Colombia</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Bolsa 1 kg</span><span data-en>1 kg bag</span><span data-fr>Sac 1 kg</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' TM</span><span class="pcard-val">25 TM</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / TM</span><span data-en>Price / MT</span><span data-fr>Prix / TM</span></span><span class="pcard-val">$1,007 USD</span></div>
+        </div>
+        <div class="pcard-price">$25,175<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d3">
+        <div class="pcard-name"><span data-es>Harina de Trigo PASPAN</span><span data-en>PASPAN Wheat Flour</span><span data-fr>Farine de Blé PASPAN</span></div>
+        <div class="pcard-origin">Colombia</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Bolsa 50 kg</span><span data-en>50 kg bag</span><span data-fr>Sac 50 kg</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' TM</span><span class="pcard-val">25 TM</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / TM</span><span data-en>Price / MT</span><span data-fr>Prix / TM</span></span><span class="pcard-val">$811 USD</span></div>
+        </div>
+        <div class="pcard-price">$20,273<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d4">
+        <div class="pcard-name"><span data-es>Frijoles Negros / Rojos</span><span data-en>Black / Red Beans</span><span data-fr>Haricots Noirs / Rouges</span></div>
+        <div class="pcard-origin">Brasil</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Saco 50 kg</span><span data-en>50 kg sack</span><span data-fr>Sac 50 kg</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">540 sacos</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / saco</span><span data-en>Price / sack</span><span data-fr>Prix / sac</span></span><span class="pcard-val">$64.50 USD</span></div>
+        </div>
+        <div class="pcard-price">$34,830<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d5">
+        <div class="pcard-name"><span data-es>Leche en Polvo 90–10%</span><span data-en>Milk Powder 90–10%</span><span data-fr>Lait en Poudre 90–10%</span></div>
+        <div class="pcard-origin">Cartagena</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Saco 25 kg</span><span data-en>25 kg sack</span><span data-fr>Sac 25 kg</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' TM</span><span class="pcard-val">25 TM</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / TM</span><span data-en>Price / MT</span><span data-fr>Prix / TM</span></span><span class="pcard-val">$3,048 USD</span></div>
+        </div>
+        <div class="pcard-price">$76,200<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d6">
+        <div class="pcard-name"><span data-es>Leche en Polvo 26% Grasa</span><span data-en>Milk Powder 26% Fat</span><span data-fr>Lait en Poudre 26% MG</span></div>
+        <div class="pcard-origin">Cartagena</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Saco 25 kg</span><span data-en>25 kg sack</span><span data-fr>Sac 25 kg</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' TM</span><span class="pcard-val">25 TM</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / TM</span><span data-en>Price / MT</span><span data-fr>Prix / TM</span></span><span class="pcard-val">$3,498 USD</span></div>
+        </div>
+        <div class="pcard-price">$87,450<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d1">
+        <div class="pcard-name"><span data-es>Pasta Espagueti 250g</span><span data-en>Spaghetti 250g</span><span data-fr>Spaghetti 250g</span></div>
+        <div class="pcard-origin">Cartagena</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Bulto 48 und</span><span data-en>Box 48 units</span><span data-fr>Carton 48 unités</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">1,122 bultos</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / bulto</span><span data-en>Price / box</span><span data-fr>Prix / carton</span></span><span class="pcard-val">$16.15 USD</span></div>
+        </div>
+        <div class="pcard-price">$18,120<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d2">
+        <div class="pcard-name"><span data-es>Pasta Conchita 250g</span><span data-en>Shell Pasta 250g</span><span data-fr>Pâtes Conchita 250g</span></div>
+        <div class="pcard-origin">Cartagena</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Bulto 48 und</span><span data-en>Box 48 units</span><span data-fr>Carton 48 unités</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">1,853 bultos</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / bulto</span><span data-en>Price / box</span><span data-fr>Prix / carton</span></span><span class="pcard-val">$13.85 USD</span></div>
+        </div>
+        <div class="pcard-price">$25,664<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d3">
+        <div class="pcard-name"><span data-es>Café en Polvo 250g</span><span data-en>Ground Coffee 250g</span><span data-fr>Café Moulu 250g</span></div>
+        <div class="pcard-origin"><span data-es>Bajo consulta</span><span data-en>On enquiry</span><span data-fr>Sur demande</span></div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Bolsa 250g</span><span data-en>250g bag</span><span data-fr>Sachet 250g</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">42,412 bolsas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / und</span><span data-en>Price / unit</span><span data-fr>Prix / unité</span></span><span class="pcard-val">$1.81 USD</span></div>
+        </div>
+        <div class="pcard-price">$76,766<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAT: ACEITES -->
+  <div class="prod-cat-section" id="cat-aceites">
+    <div class="prod-cat-title"><span data-es>Aceites, Lácteos &amp; Bebidas</span><span data-en>Oils, Dairy &amp; Beverages</span><span data-fr>Huiles, Produits Laitiers &amp; Boissons</span></div>
+    <div class="prod-grid">
+      <div class="pcard rv d1">
+        <div class="pcard-name">Aceite COAMO 900ml</div>
+        <div class="pcard-origin">Brasil</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Caja × 20 und</span><span data-en>Box × 20 units</span><span data-fr>Boîte × 20 unités</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">40' cant.</span><span class="pcard-val">1,600 cajas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / caja</span><span data-en>Price / box</span><span data-fr>Prix / boîte</span></span><span class="pcard-val">$33.00 USD</span></div>
+        </div>
+        <div class="pcard-price">$52,800<span class="pcard-price-sub"> / 40' CIF</span></div>
+      </div>
+      <div class="pcard rv d2">
+        <div class="pcard-name"><span data-es>Aceite de Soja Ricuras 900ml</span><span data-en>Soybean Oil Ricuras 900ml</span><span data-fr>Huile de Soja Ricuras 900ml</span></div>
+        <div class="pcard-origin">Cartagena</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Caja × 12 und</span><span data-en>Box × 12 units</span><span data-fr>Boîte × 12 unités</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">2,600 cajas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / caja</span><span data-en>Price / box</span><span data-fr>Prix / boîte</span></span><span class="pcard-val">$22.35 USD</span></div>
+        </div>
+        <div class="pcard-price">$58,110<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d3">
+        <div class="pcard-name"><span data-es>Aceite Vegetal Imperial 900ml</span><span data-en>Imperial Vegetable Oil 900ml</span><span data-fr>Huile Végétale Imperial 900ml</span></div>
+        <div class="pcard-origin">Cartagena</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Caja × 12 und</span><span data-en>Box × 12 units</span><span data-fr>Boîte × 12 unités</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">2,600 cajas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / caja</span><span data-en>Price / box</span><span data-fr>Prix / boîte</span></span><span class="pcard-val">$21.00 USD</span></div>
+        </div>
+        <div class="pcard-price">$54,600<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d4">
+        <div class="pcard-name"><span data-es>Leche Condensada 395g</span><span data-en>Condensed Milk 395g</span><span data-fr>Lait Condensé 395g</span></div>
+        <div class="pcard-origin">Brasil</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val">27 × 395g</span></div>
+          <div class="pcard-row"><span class="pcard-lbl">40' cant.</span><span class="pcard-val">2,496 cajas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / caja</span><span data-en>Price / box</span><span data-fr>Prix / boîte</span></span><span class="pcard-val">$26.00 USD</span></div>
+        </div>
+        <div class="pcard-price">$64,896<span class="pcard-price-sub"> / 40' CIF</span></div>
+      </div>
+      <div class="pcard rv d5">
+        <div class="pcard-name"><span data-es>Jugos 200ml</span><span data-en>Juices 200ml</span><span data-fr>Jus 200ml</span></div>
+        <div class="pcard-origin"><span data-es>Bajo consulta</span><span data-en>On enquiry</span><span data-fr>Sur demande</span></div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val">27 × 200ml</span></div>
+          <div class="pcard-row"><span class="pcard-lbl">40' cant.</span><span class="pcard-val">4,500 cajas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / caja</span><span data-en>Price / box</span><span data-fr>Prix / boîte</span></span><span class="pcard-val">$8.35 USD</span></div>
+        </div>
+        <div class="pcard-price">$37,575<span class="pcard-price-sub"> / 40' CIF</span></div>
+      </div>
+      <div class="pcard rv d6">
+        <div class="pcard-name"><span data-es>Jugo en Polvo Sachet</span><span data-en>Powdered Juice Sachet</span><span data-fr>Jus en Poudre Sachet</span></div>
+        <div class="pcard-origin"><span data-es>Bajo consulta</span><span data-en>On enquiry</span><span data-fr>Sur demande</span></div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val">120 × 20g</span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">3,600 cajas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / caja</span><span data-en>Price / box</span><span data-fr>Prix / boîte</span></span><span class="pcard-val">$17.20 USD</span></div>
+        </div>
+        <div class="pcard-price">$61,920<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAT: REFRIGERADOS -->
+  <div class="prod-cat-section" id="cat-refrigerados">
+    <div class="prod-cat-title"><span data-es>Productos Refrigerados</span><span data-en>Refrigerated Products</span><span data-fr>Produits Réfrigérés</span></div>
+    <div class="prod-grid">
+      <div class="pcard rv d1">
+        <div class="pcard-name"><span data-es>Salchichas</span><span data-en>Sausages</span><span data-fr>Saucisses</span></div>
+        <div class="pcard-origin"><span data-es>Bajo consulta</span><span data-en>On enquiry</span><span data-fr>Sur demande</span></div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Caja 12kg (4×3kg)</span><span data-en>12kg box (4×3kg)</span><span data-fr>Boîte 12kg (4×3kg)</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">2,083 cajas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / caja</span><span data-en>Price / box</span><span data-fr>Prix / boîte</span></span><span class="pcard-val">$23.75 USD</span></div>
+        </div>
+        <div class="pcard-price">$49,471<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d2">
+        <div class="pcard-name">MDM — <span data-es>Carne Mecanicamente Separada</span><span data-en>Mechanically Separated Meat</span><span data-fr>Viande Mécaniquement Séparée</span></div>
+        <div class="pcard-origin"><span data-es>Bajo consulta</span><span data-en>On enquiry</span><span data-fr>Sur demande</span></div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Caja 15 kg</span><span data-en>15 kg box</span><span data-fr>Boîte 15 kg</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">1,666 cajas</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / kg</span><span data-en>Price / kg</span><span data-fr>Prix / kg</span></span><span class="pcard-val">$18.50 USD</span></div>
+        </div>
+        <div class="pcard-price">$30,821<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d3" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2.5rem;background:var(--gold3);border:1px dashed var(--line2)">
+        <div style="font-size:2rem;margin-bottom:1rem">+</div>
+        <div style="font-size:.88rem;color:var(--muted);line-height:1.7">
+          <span data-es>Margarinas · Huevos · Pasta de Tomate · Snacks · Cervezas · Refrescos · Frutas — disponibles bajo cotización</span>
+          <span data-en>Margarines · Eggs · Tomato Paste · Snacks · Beers · Sodas · Fruits — available on request</span>
+          <span data-fr>Margarines · Œufs · Concentré de Tomate · Snacks · Bières · Sodas · Fruits — disponibles sur demande</span>
+        </div>
+        <a href="#contacto" class="bpri" style="margin-top:1.5rem;font-size:.68rem"><span data-es>Consultar</span><span data-en>Enquire</span><span data-fr>Consulter</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAT: HIGIENE -->
+  <div class="prod-cat-section" id="cat-higiene">
+    <div class="prod-cat-title"><span data-es>Higiene &amp; Limpieza</span><span data-en>Hygiene &amp; Cleaning</span><span data-fr>Hygiène &amp; Nettoyage</span></div>
+    <div class="prod-grid">
+      <div class="pcard rv d1">
+        <div class="pcard-name"><span data-es>Detergente en Polvo</span><span data-en>Powdered Detergent</span><span data-fr>Lessive en Poudre</span></div>
+        <div class="pcard-origin">Cartagena</div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Presentación</span><span data-en>Packaging</span><span data-fr>Conditionnement</span></span><span class="pcard-val"><span data-es>Pack 20×1kg</span><span data-en>Pack 20×1kg</span><span data-fr>Pack 20×1kg</span></span></div>
+          <div class="pcard-row"><span class="pcard-lbl">20' cant.</span><span class="pcard-val">1,350 packs</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Precio / pack</span><span data-en>Price / pack</span><span data-fr>Prix / pack</span></span><span class="pcard-val">$29.10 USD</span></div>
+        </div>
+        <div class="pcard-price">$39,285<span class="pcard-price-sub"> / 20' CIF</span></div>
+      </div>
+      <div class="pcard rv d2" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;background:var(--gold3);border:1px dashed var(--line2)">
+        <div style="font-size:1.5rem;margin-bottom:.8rem">🧼</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.7">
+          <span data-es>Jabones · Shampoos · Desinfectantes · Papel higiénico — disponibles bajo cotización</span>
+          <span data-en>Soaps · Shampoos · Disinfectants · Toilet paper — available on request</span>
+          <span data-fr>Savons · Shampooings · Désinfectants · Papier toilette — disponibles sur demande</span>
+        </div>
+        <a href="#contacto" class="bpri" style="margin-top:1.2rem;font-size:.68rem"><span data-es>Consultar</span><span data-en>Enquire</span><span data-fr>Consulter</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAT: AZÚCAR -->
+  <div class="prod-cat-section" id="cat-azucar">
+    <div class="prod-cat-title"><span data-es>Azúcar Blanca Cristalina · ICUMSA 45 · Origen Brasil</span><span data-en>White Crystalline Sugar · ICUMSA 45 · Origin Brazil</span><span data-fr>Sucre Blanc Cristallin · ICUMSA 45 · Origine Brésil</span></div>
+    <div class="prod-grid">
+      <div class="pcard featured rv d1" style="grid-column:span 2">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem">
+          <div>
+            <div class="pcard-name" style="font-size:1.3rem"><span data-es>Azúcar Blanca Cristalina — Grado ICUMSA 45</span><span data-en>White Crystalline Sugar — ICUMSA 45 Grade</span><span data-fr>Sucre Blanc Cristallin — Grade ICUMSA 45</span></div>
+            <div class="pcard-origin">Brasil · Usina Bazan S.A.</div>
+          </div>
+          <div style="background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3);border-radius:var(--rad);padding:.5rem 1rem;text-align:center">
+            <div style="font-family:var(--fl);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:.2rem"><span data-es>Precio FOB Cristóbal</span><span data-en>FOB Cristóbal Price</span><span data-fr>Prix FOB Cristóbal</span></div>
+            <div style="font-family:var(--fd);font-size:1.4rem;font-weight:700">$870 <span style="font-size:.7rem;color:var(--muted)">USD/TM</span></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.2rem">
+          <div style="padding:.6rem;background:rgba(255,255,255,.03);border-radius:var(--rad)"><div class="pcard-lbl" style="margin-bottom:.3rem"><span data-es>Grado ICUMSA</span><span data-en>ICUMSA Grade</span><span data-fr>Grade ICUMSA</span></div><div style="font-weight:500">45 UI máx.</div></div>
+          <div style="padding:.6rem;background:rgba(255,255,255,.03);border-radius:var(--rad)"><div class="pcard-lbl" style="margin-bottom:.3rem"><span data-es>Polarización</span><span data-en>Polarisation</span><span data-fr>Polarisation</span></div><div style="font-weight:500">99.80° mín.</div></div>
+          <div style="padding:.6rem;background:rgba(255,255,255,.03);border-radius:var(--rad)"><div class="pcard-lbl" style="margin-bottom:.3rem"><span data-es>Lote disponible</span><span data-en>Available lot</span><span data-fr>Lot disponible</span></div><div style="font-weight:500">270.81 TM · 10×20'</div></div>
+        </div>
+        <div style="background:rgba(201,168,76,.06);border:1px solid var(--line);border-radius:var(--rad);padding:1rem;font-size:.82rem;color:var(--muted);line-height:1.75;margin-bottom:1rem">
+          <span data-es>✓ Certificado SGS · ✓ Certificado de Origen Brasil · ✓ BL MSC · ✓ Hasta 21% más económico que el rango CFR Cuba ($950–$1,100/TM)</span>
+          <span data-en>✓ SGS Certificate · ✓ Brazilian Certificate of Origin · ✓ MSC BL · ✓ Up to 21% cheaper than CFR Cuba range ($950–$1,100/MT)</span>
+          <span data-fr>✓ Certificat SGS · ✓ Certificat d'Origine Brésil · ✓ BL MSC · ✓ Jusqu'à 21% moins cher que la fourchette CFR Cuba ($950–$1,100/TM)</span>
+        </div>
+        <a href="#contacto" class="bpri" style="font-size:.7rem"><span data-es>Solicitar FCO / Cotización</span><span data-en>Request FCO / Quote</span><span data-fr>Demander FCO / Devis</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAT: COMBUSTIBLES -->
+  <div class="prod-cat-section" id="cat-combustibles">
+    <div class="prod-cat-title"><span data-es>Combustibles &amp; Energía</span><span data-en>Fuels &amp; Energy</span><span data-fr>Carburants &amp; Énergie</span></div>
+    <div class="prod-grid">
+      <div class="pcard rv d1">
+        <div class="pcard-name">Diesel No. 2 Low Sulfur · ULSD</div>
+        <div class="pcard-origin"><span data-es>Panamá / despacho internacional</span><span data-en>Panama / international dispatch</span><span data-fr>Panama / expédition internationale</span></div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl">Spec.</span><span class="pcard-val">ASTM D975</span></div>
+          <div class="pcard-row"><span class="pcard-lbl">Incoterm</span><span class="pcard-val">CIF · CFR</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Volumen min.</span><span data-en>Min. volume</span><span data-fr>Volume min.</span></span><span class="pcard-val">400,000 gal / ciclo</span></div>
+        </div>
+        <div class="pcard-price" style="font-size:1rem;color:var(--muted)"><span data-es>Precio bajo cotización</span><span data-en>Price on quote</span><span data-fr>Prix sur devis</span></div>
+      </div>
+      <div class="pcard rv d2">
+        <div class="pcard-name">Jet A-1 · Turbocombustible</div>
+        <div class="pcard-origin"><span data-es>Bajo consulta</span><span data-en>On enquiry</span><span data-fr>Sur demande</span></div>
+        <div class="pcard-rows">
+          <div class="pcard-row"><span class="pcard-lbl">Spec.</span><span class="pcard-val">DEF STAN 91-091</span></div>
+          <div class="pcard-row"><span class="pcard-lbl">Incoterm</span><span class="pcard-val">CIF · FOB</span></div>
+          <div class="pcard-row"><span class="pcard-lbl"><span data-es>Mecanismo pago</span><span data-en>Payment mechanism</span><span data-fr>Mécanisme de paiement</span></span><span class="pcard-val">Escrow</span></div>
+        </div>
+        <div class="pcard-price" style="font-size:1rem;color:var(--muted)"><span data-es>Precio bajo cotización</span><span data-en>Price on quote</span><span data-fr>Prix sur devis</span></div>
+      </div>
+      <div class="pcard rv d3" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem">
+        <div style="font-size:2rem;margin-bottom:.8rem">🔒</div>
+        <div style="font-family:var(--fl);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem">NDA / NCNDA</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.7">
+          <span data-es>Todas las operaciones de combustible se gestionan bajo acuerdos de confidencialidad bilateral y mecanismos de escrow certificados.</span>
+          <span data-en>All fuel operations are managed under bilateral confidentiality agreements and certified escrow mechanisms.</span>
+          <span data-fr>Toutes les opérations de carburant sont gérées sous des accords de confidentialité bilatéraux et des mécanismes d'entiercement certifiés.</span>
+        </div>
+        <a href="#contacto" class="bgho" style="margin-top:1.2rem;font-size:.7rem"><span data-es>Iniciar contacto seguro</span><span data-en>Start secure contact</span><span data-fr>Commencer contact sécurisé</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:2.5rem" class="rv">
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:1.2rem">
+      <span data-es>¿Necesita un producto no listado? Contáctenos — trabajamos con más líneas bajo cotización.</span>
+      <span data-en>Need an unlisted product? Contact us — we work with additional lines on request.</span>
+      <span data-fr>Vous avez besoin d'un produit non listé? Contactez-nous — nous travaillons avec des lignes supplémentaires sur demande.</span>
+    </p>
+    <a href="#contacto" class="bgho"><span data-es>Solicitar cotización →</span><span data-en>Request quote →</span><span data-fr>Demander devis →</span></a>
+  </div>
+</section>
+
+<!-- ══════════ ROUTE MAP ══════════ -->
+<section id="rutas" class="sec sec-dark">
+  <div style="text-align:center;margin-bottom:2rem" class="rv">
+    <div class="slbl slbl-c">
+      <span data-es>Red de Rutas Marítimas</span>
+      <span data-en>Maritime Route Network</span>
+      <span data-fr>Réseau de Routes Maritimes</span>
+    </div>
+    <h2 class="sh2" style="text-align:center">
+      <span data-es>Una plataforma, <span>dos rutas activas</span></span>
+      <span data-en>One platform, <span>two active routes</span></span>
+      <span data-fr>Une plateforme, <span>deux routes actives</span></span>
+    </h2>
+    <p style="color:var(--muted);font-size:.9rem;max-width:560px;margin:0 auto">
+      <span data-es>Desde Colón operamos rutas directas hacia Cuba y Haití, con escala logística en Cartagena. Nuestras operaciones conectan con proveedores en Brasil y Guyana.</span>
+      <span data-en>From Colón we operate direct routes to Cuba and Haiti, with a logistical stop in Cartagena. Our operations connect with suppliers in Brazil and Guyana.</span>
+      <span data-fr>Depuis Colón, nous opérons des routes directes vers Cuba et Haïti, avec escale logistique à Carthagène. Nos opérations se connectent à des fournisseurs au Brésil et en Guyane.</span>
+    </p>
+  </div>
+
+  <div class="map-wrap rv">
+    <svg id="routeMapSvg" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" aria-label="DIJO maritime route map">
+      <!-- Background filled by JS -->
+    </svg>
+    <div class="map-legend">
+      <div class="map-leg-item">
+        <div class="map-leg-dot" style="background:var(--gold)"></div>
+        <span class="map-leg-lbl">
+          <span data-es>Ruta A · Colón → El Mariel, Cuba → Cartagena</span>
+          <span data-en>Route A · Colón → El Mariel, Cuba → Cartagena</span>
+          <span data-fr>Route A · Colón → El Mariel, Cuba → Carthagène</span>
+        </span>
+      </div>
+      <div class="map-leg-item">
+        <div class="map-leg-dot" style="background:var(--sky)"></div>
+        <span class="map-leg-lbl">
+          <span data-es>Ruta B · Colón → Port-au-Prince, Haití → Cartagena</span>
+          <span data-en>Route B · Colón → Port-au-Prince, Haiti → Cartagena</span>
+          <span data-fr>Route B · Colón → Port-au-Prince, Haïti → Carthagène</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ O2O ══════════ -->
+<section id="o2o" class="sec">
+  <div class="o2o-badge">
+    <span data-es>Próximamente · En desarrollo</span>
+    <span data-en>Coming Soon · In Development</span>
+    <span data-fr>Bientôt · En Développement</span>
+  </div>
+  <div class="slbl">
+    <span data-es>Modelo O2O · Online to Offline</span>
+    <span data-en>O2O Model · Online to Offline</span>
+    <span data-fr>Modèle O2O · Online to Offline</span>
+  </div>
+  <h2 class="sh2">
+    <span data-es>El comercio del futuro,<br><em>construido hoy.</em></span>
+    <span data-en>The commerce of the future,<br><em>built today.</em></span>
+    <span data-fr>Le commerce de demain,<br><em>construit aujourd'hui.</em></span>
+  </h2>
+
+  <div class="o2o-grid">
+    <div class="o2o-steps">
+      <div class="o2o-step rv d1">
+        <div class="o2o-step-n">1</div>
+        <div>
+          <div class="o2o-step-t"><span data-es>Pedido en línea</span><span data-en>Online Order</span><span data-fr>Commande en Ligne</span></div>
+          <p class="o2o-step-b"><span data-es>El comprador final o distribuidor realiza su pedido a través de nuestra plataforma digital con catálogo completo y precios en tiempo real.</span><span data-en>The end buyer or distributor places their order through our digital platform with full catalogue and real-time pricing.</span><span data-fr>L'acheteur final ou le distributeur passe sa commande via notre plateforme numérique avec catalogue complet et prix en temps réel.</span></p>
+        </div>
+      </div>
+      <div class="o2o-step rv d2">
+        <div class="o2o-step-n">2</div>
+        <div>
+          <div class="o2o-step-t"><span data-es>Procesamiento logístico ZLC</span><span data-en>ZLC Logistics Processing</span><span data-fr>Traitement Logistique ZLC</span></div>
+          <p class="o2o-step-b"><span data-es>DIJO consolida, empaca y documenta el pedido desde nuestras bodegas en France Field, coordinando el despacho marítimo con el proveedor.</span><span data-en>DIJO consolidates, packages and documents the order from our France Field warehouses, coordinating maritime dispatch with the supplier.</span><span data-fr>DIJO consolide, emballe et documente la commande depuis nos entrepôts de France Field, en coordonnant l'expédition maritime avec le fournisseur.</span></p>
+        </div>
+      </div>
+      <div class="o2o-step rv d3">
+        <div class="o2o-step-n">3</div>
+        <div>
+          <div class="o2o-step-t"><span data-es>Entrega física en destino</span><span data-en>Physical Delivery at Destination</span><span data-fr>Livraison Physique à Destination</span></div>
+          <p class="o2o-step-b"><span data-es>La mercancía llega al almacén o punto de distribución del cliente en Cuba, Haití o el Caribe, cerrando el ciclo digital-físico con trazabilidad completa.</span><span data-en>The merchandise arrives at the client's warehouse or distribution point in Cuba, Haiti or the Caribbean, closing the digital-physical cycle with full traceability.</span><span data-fr>La marchandise arrive à l'entrepôt ou au point de distribution du client à Cuba, Haïti ou dans les Caraïbes, bouclant le cycle numérique-physique avec une traçabilité complète.</span></p>
+        </div>
+      </div>
+      <div class="o2o-step rv d4">
+        <div class="o2o-step-n">4</div>
+        <div>
+          <div class="o2o-step-t">MEGA AHORRO GARELLO</div>
+          <p class="o2o-step-b"><span data-es>Plataforma O2O para el mercado cubano: catálogo digital + entrega física. Integración con Acuerdo 10216/2025 y operadores locales. En desarrollo activo.</span><span data-en>O2O platform for the Cuban market: digital catalogue + physical delivery. Integration with Agreement 10216/2025 and local operators. Actively in development.</span><span data-fr>Plateforme O2O pour le marché cubain: catalogue numérique + livraison physique. Intégration avec l'Accord 10216/2025 et les opérateurs locaux. En développement actif.</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="o2o-visual rv">
+      <span class="o2o-icon">🛒</span>
+      <div class="o2o-coming">MEGA AHORRO<br>GARELLO</div>
+      <p class="o2o-coming-sub">
+        <span data-es>E-commerce mayorista con entrega en puerta para el mercado cubano y caribeño. Donde el mundo digital se encuentra con la logística real.</span>
+        <span data-en>Wholesale e-commerce with doorstep delivery for the Cuban and Caribbean market. Where the digital world meets real logistics.</span>
+        <span data-fr>E-commerce de gros avec livraison à domicile pour le marché cubain et caribéen. Là où le monde numérique rencontre la logistique réelle.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TEAM ══════════ -->
+<section id="equipo" class="sec-pad sec-equipo-bg">
+  <div class="container">
+
+    <!-- Header -->
+    <p class="team-section-label">
+      <span data-es>EL EQUIPO</span>
+      <span data-en>THE TEAM</span>
+      <span data-fr>L'ÉQUIPE</span>
+    </p>
+    <h2 class="team-section-title">
+      <span data-es>Las personas detrás de <span>DIJO</span></span>
+      <span data-en>The people behind <span>DIJO</span></span>
+      <span data-fr>Les personnes derrière <span>DIJO</span></span>
+    </h2>
+    <p class="team-section-sub">
+      <span data-es="Profesionales de excelencia en sus campos — socios, asesores y aliados comprometidos con el crecimiento de cada operación.">Profesionales de excelencia en sus campos — socios, asesores y aliados comprometidos con el crecimiento de cada operación.</span>
+      <span data-en="Excellence professionals in their fields — partners, advisors and allies committed to the growth of every operation.">Excellence professionals in their fields — partners, advisors and allies committed to the growth of every operation.</span>
+      <span data-fr="Professionnels d'excellence dans leurs domaines — associés, conseillers et alliés engagés pour la croissance de chaque opération.">Professionnels d'excellence dans leurs domaines — associés, conseillers et alliés engagés pour la croissance de chaque opération.</span>
+    </p>
+
+    <!-- CEO -->
+    <div class="team-ceo-wrap rv">
+      <div class="team-ceo-card">
+        <div class="team-ceo-photo">
+          <img src="img/team/CEO_DIJO.png" alt="Joaquín Puello Rodríguez">
+        </div>
+        <p class="team-ceo-name">Joaquín Puello Rodríguez</p>
+        <p class="team-ceo-role">
+          <span data-es="CEO">C.E.O. & FUNDADOR</span>
+          <span data-en="CEO">C.E.O. & FOUNDER</span>
+          <span data-fr="CEO">P.D.G. & FONDATEUR</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Team grid -->
+    <div class="team-members-grid rs">
+
+      <div class="team-member-card">
+        <div class="team-member-photo">
+          <img src="img/team/CPRO2_DIJO.png" alt="Licda. Olgalina de Quijada">
+        </div>
+        <p class="team-member-name">Licda. Olgalina de Quijada</p>
+        <p class="team-member-role">
+          <span data-es="Relaciones Públicas (PRC)">Relaciones Públicas (PRC)</span><span data-en="Public Relations (PRC)">Public Relations (PRC)</span><span data-fr="Relations Publiques (PRC)">Relations Publiques (PRC)</span>
+        </p>
+      </div>
+
+      <div class="team-member-card">
+        <div class="team-member-photo">
+          <img src="img/team/DGDP_BUST_DIR_ADMIN_DIJO.png" alt="Licda. Diurka Garcia de Puello">
+        </div>
+        <p class="team-member-name">Licda. Diurka Garcia de Puello</p>
+        <p class="team-member-role">
+          <span data-es="Directora Administrativa">Directora Administrativa</span><span data-en="Administrative Director">Administrative Director</span><span data-fr="Directrice Administrative">Directrice Administrative</span>
+        </p>
+      </div>
+
+      <div class="team-member-card">
+        <div class="team-member-photo">
+          <img src="img/team/DIJO_ENC_IT.jpeg" alt="Joaquín de J. Puello Sánchez">
+        </div>
+        <p class="team-member-name">Joaquín de J. Puello Sánchez</p>
+        <p class="team-member-role">
+          <span data-es="Director de Tecnología (CTO)">Director de Tecnología (CTO)</span><span data-en="Chief Technology Officer (CTO)">Chief Technology Officer (CTO)</span><span data-fr="Directeur de la Technologie (CTO)">Directeur de la Technologie (CTO)</span>
+        </p>
+      </div>
+
+      <div class="team-member-card">
+        <div class="team-member-photo">
+          <img src="img/team/DIR_CARIBE_DIJO.png" alt="Licda. Edilma Suárez Leyva">
+        </div>
+        <p class="team-member-name">Licda. Edilma Suárez Leyva</p>
+        <p class="team-member-role">
+          <span data-es="Directora Filial Caribe">Directora Filial Caribe</span><span data-en="Caribbean Branch Director">Caribbean Branch Director</span><span data-fr="Directrice Filiale Caraïbes">Directrice Filiale Caraïbes</span>
+        </p>
+      </div>
+
+      <div class="team-member-card">
+        <div class="team-member-photo">
+          <img src="img/team/GVQC_A_LEGAL_DIJO.png" alt="Licda. Grethel V. Quijada Conte">
+        </div>
+        <p class="team-member-name">Licda. Grethel V. Quijada Conte</p>
+        <p class="team-member-role">
+          <span data-es="Asesoría Legal &amp; Socia">Asesoría Legal &amp; Socia</span><span data-en="Legal Advisory &amp; Partner">Legal Advisory &amp; Partner</span><span data-fr="Conseil Juridique &amp; Associée">Conseil Juridique &amp; Associée</span>
+        </p>
+      </div>
+
+      <div class="team-member-card">
+        <div class="team-member-photo">
+          <img src="img/team/ElioEdel_Oficina_DIJO.png" alt="Mgst. Elio Edel Gibert Quintana">
+        </div>
+        <p class="team-member-name">Mgst. Elio Edel Gibert Quintana</p>
+        <p class="team-member-role">
+          <span data-es="Asesoría Comercial &amp; Logística">Asesoría Comercial &amp; Logística</span><span data-en="Commercial &amp; Logistics Advisory">Commercial &amp; Logistics Advisory</span><span data-fr="Conseil Commercial &amp; Logistique">Conseil Commercial &amp; Logistique</span>
+        </p>
+      </div>
+
+      <div class="team-member-card">
+        <div class="team-member-photo">
+          <img src="img/team/Leonel_Zamora_Site_DiJo.png" alt="Lic. Leonel Zamora">
+        </div>
+        <p class="team-member-name">Lic. Leonel Zamora</p>
+        <p class="team-member-role">
+          <span data-es="Asesoría Legal Caribe">Asesoría Legal Caribe</span><span data-en="Caribbean Legal Advisory">Caribbean Legal Advisory</span><span data-fr="Conseil Juridique Caraïbes">Conseil Juridique Caraïbes</span>
+        </p>
+      </div>
+
+      <div class="team-member-card">
+        <div class="team-member-photo">
+          <img src="img/team/Dr_Rigual_DIJO.png" alt="Dr. Rogelio Rigual">
+        </div>
+        <p class="team-member-name">Dr. Rogelio Rigual</p>
+        <p class="team-member-role">
+          <span data-es="Asesor Estratégico">Asesor Estratégico</span><span data-en="Strategic Advisor">Strategic Advisor</span><span data-fr="Conseiller Stratégique">Conseiller Stratégique</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ALLIANCES ══════════ -->
+<section id="alianzas" class="sec sec-dark">
+  <div class="alliance-grid">
+    <div class="rl">
+      <div class="slbl">
+        <span data-es>Alianzas Estratégicas</span>
+        <span data-en>Strategic Alliances</span>
+        <span data-fr>Alliances Stratégiques</span>
+      </div>
+      <h2 class="sh2">
+        <span data-es>Una red de <span>confianza probada</span></span>
+        <span data-en>A network of <span>proven trust</span></span>
+        <span data-fr>Un réseau de <span>confiance prouvée</span></span>
+      </h2>
+      <p style="color:var(--muted);font-size:.9rem;line-height:1.85;margin-bottom:1.5rem">
+        <span data-es>Nuestro ecosistema comercial incluye alianzas formales con productores primarios, agentes exclusivos, navieras y operadores estatales — construidas bajo marcos legales de confidencialidad bilateral.</span>
+        <span data-en>Our commercial ecosystem includes formal alliances with primary producers, exclusive agents, shipping lines and state operators — built under bilateral confidentiality legal frameworks.</span>
+        <span data-fr>Notre écosystème commercial comprend des alliances formelles avec des producteurs primaires, des agents exclusifs, des compagnies maritimes et des opérateurs étatiques — construites sous des cadres juridiques de confidentialité bilatérale.</span>
+      </p>
+      <div class="alliance-items">
+        <div class="alli rv d1">
+          <div class="alli-ico">🇵🇦</div>
+          <div>
+            <div class="alli-n"><span data-es>Operadores ZLC</span><span data-en>ZLC Operators</span><span data-fr>Opérateurs ZLC</span></div>
+            <p class="alli-b"><span data-es>CIBO S.A., Femmarine Consulting, Toda América Mercantil — alianzas formalizadas con NCNDA, IMFPA y contratos de representación comercial independiente.</span><span data-en>CIBO S.A., Femmarine Consulting, Toda América Mercantil — alliances formalized with NCNDA, IMFPA and independent commercial representation contracts.</span><span data-fr>CIBO S.A., Femmarine Consulting, Toda América Mercantil — alliances formalisées avec NCNDA, IMFPA et contrats de représentation commerciale indépendante.</span></p>
+          </div>
+        </div>
+        <div class="alli rv d2">
+          <div class="alli-ico">🇨🇺</div>
+          <div>
+            <div class="alli-n"><span data-es>Operadores Cuba</span><span data-en>Cuban Operators</span><span data-fr>Opérateurs Cubains</span></div>
+            <p class="alli-b"><span data-es>AGROINT, D'Godos S.U.R.L., Comercializadora Garello S.U.R.L., Empresa Cárnica de Granma, PDL QuedArte — red de distribución e importación con acceso preferencial al mercado cubano.</span><span data-en>AGROINT, D'Godos S.U.R.L., Garello Comercializadora S.U.R.L., Empresa Cárnica de Granma, PDL QuedArte — distribution and import network with preferential access to the Cuban market.</span><span data-fr>AGROINT, D'Godos S.U.R.L., Commercialisatrice Garello S.U.R.L., Empresa Cárnica de Granma, PDL QuedArte — réseau de distribution et d'importation avec accès préférentiel au marché cubain.</span></p>
+          </div>
+        </div>
+        <div class="alli rv d3">
+          <div class="alli-ico">🌐</div>
+          <div>
+            <div class="alli-n"><span data-es>Proveedores &amp; Navieras</span><span data-en>Suppliers &amp; Shipping Lines</span><span data-fr>Fournisseurs &amp; Armateurs</span></div>
+            <p class="alli-b"><span data-es>Productores en Brasil (Usina Bazan), Colombia, Guyana. Operaciones con MSC, coordinación de booking en Cristóbal y seguimiento documental completo.</span><span data-en>Producers in Brazil (Usina Bazan), Colombia, Guyana. Operations with MSC, booking coordination at Cristóbal and complete documentary tracking.</span><span data-fr>Producteurs au Brésil (Usina Bazan), Colombie, Guyane. Opérations avec MSC, coordination de réservation à Cristóbal et suivi documentaire complet.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alliance-quote rr">
+      <p class="aq-text">
+        <span data-es>"Navegamos el nuevo orden geopolítico con inteligencia logística, convirtiendo la complejidad regulatoria en ventaja competitiva para nuestros socios."</span>
+        <span data-en>"We navigate the new geopolitical order with logistics intelligence, turning regulatory complexity into competitive advantage for our partners."</span>
+        <span data-fr>"Nous naviguons le nouvel ordre géopolitique avec intelligence logistique, transformant la complexité réglementaire en avantage compétitif pour nos partenaires."</span>
+      </p>
+      <div class="aq-attr">Joaquín Puello Rodríguez · CEO, DIJO Aeromaritime S.A.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contacto" class="sec">
+  <div class="contact-grid">
+    <div class="rl">
+      <div class="slbl">
+        <span data-es>Contacto &amp; Cotización</span>
+        <span data-en>Contact &amp; Quote</span>
+        <span data-fr>Contact &amp; Devis</span>
+      </div>
+      <h2 class="sh2">
+        <span data-es>Hablemos de <span>negocios</span></span>
+        <span data-en>Let's talk <span>business</span></span>
+        <span data-fr>Parlons <span>affaires</span></span>
+      </h2>
+      <p style="color:var(--muted);font-size:.92rem;line-height:1.85;margin-bottom:2rem">
+        <span data-es>Respondemos solicitudes de clientes, distribuidores y socios potenciales en menos de 24 horas hábiles. Para operaciones de combustible o farmacéuticos, coordinamos NDA previo.</span>
+        <span data-en>We respond to enquiries from clients, distributors and potential partners within 24 business hours. For fuel or pharmaceutical operations, we coordinate a prior NDA.</span>
+        <span data-fr>Nous répondons aux demandes des clients, distributeurs et partenaires potentiels en moins de 24 heures ouvrables. Pour les opérations de carburant ou pharmaceutiques, nous coordonnons un NDA préalable.</span>
+      </p>
+      <div class="cinfo-items">
+        <div class="cinfo-item">
+          <div class="cinfo-ico">📞</div>
+          <div>
+            <div class="cinfo-lbl"><span data-es>Teléfono / WhatsApp</span><span data-en>Phone / WhatsApp</span><span data-fr>Téléphone / WhatsApp</span></div>
+            <div class="cinfo-val">+507 445-8372 &nbsp;·&nbsp; +507 6826-4309</div>
+          </div>
+        </div>
+        <div class="cinfo-item">
+          <div class="cinfo-ico">✉️</div>
+          <div>
+            <div class="cinfo-lbl">Email</div>
+            <div class="cinfo-val">dijoaeromaritime@gmail.com</div>
+          </div>
+        </div>
+        <div class="cinfo-item">
+          <div class="cinfo-ico">📍</div>
+          <div>
+            <div class="cinfo-lbl"><span data-es>Dirección</span><span data-en>Address</span><span data-fr>Adresse</span></div>
+            <div class="cinfo-val">Bodegas TCL, Calle 3ra y Ave. 7ma<br>France Field, Zona Libre de Colón<br>República de Panamá</div>
+          </div>
+        </div>
+        <div class="cinfo-item">
+          <div class="cinfo-ico">🌐</div>
+          <div>
+            <div class="cinfo-lbl">Web</div>
+            <div class="cinfo-val">www.dijoaeromaritime.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cform rv">
+      <div class="cform-title"><span data-es>Solicitar Cotización</span><span data-en>Request a Quote</span><span data-fr>Demander un Devis</span></div>
+      <form onsubmit="handleForm(event)">
+        <div class="cf-grid">
+          <div class="cf-group">
+            <label class="cf-label"><span data-es>Nombre completo</span><span data-en>Full name</span><span data-fr>Nom complet</span></label>
+            <input class="cf-input" type="text" required>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label"><span data-es>Empresa</span><span data-en>Company</span><span data-fr>Entreprise</span></label>
+            <input class="cf-input" type="text">
+          </div>
+          <div class="cf-group cf-full">
+            <label class="cf-label">Email</label>
+            <input class="cf-input" type="email" required>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">WhatsApp</label>
+            <input class="cf-input" type="tel" placeholder="+509...">
+          </div>
+          <div class="cf-group">
+            <label class="cf-label"><span data-es>País destino</span><span data-en>Destination</span><span data-fr>Destination</span></label>
+            <select class="cf-select">
+              <option>Haïti</option>
+              <option>Cuba</option>
+              <option>Caribe / Caribbean</option>
+              <option>Colombia</option>
+              <option><span data-es>Otro</span><span data-en>Other</span><span data-fr>Autre</span></option>
+            </select>
+          </div>
+          <div class="cf-group cf-full">
+            <label class="cf-label"><span data-es>Producto / línea de interés</span><span data-en>Product / line of interest</span><span data-fr>Produit / ligne d'intérêt</span></label>
+            <select class="cf-select">
+              <option><span data-es>Alimentos secos / granos</span><span data-en>Dry foods / grains</span><span data-fr>Aliments secs / grains</span></option>
+              <option><span data-es>Aceites &amp; Lácteos</span><span data-en>Oils &amp; Dairy</span><span data-fr>Huiles &amp; Produits Laitiers</span></option>
+              <option>Azúcar ICUMSA 45</option>
+              <option><span data-es>Refrigerados</span><span data-en>Refrigerated</span><span data-fr>Réfrigérés</span></option>
+              <option><span data-es>Combustibles</span><span data-en>Fuels</span><span data-fr>Carburants</span></option>
+              <option><span data-es>Alianza / Representación</span><span data-en>Alliance / Representation</span><span data-fr>Alliance / Représentation</span></option>
+              <option><span data-es>Múltiples líneas</span><span data-en>Multiple lines</span><span data-fr>Lignes multiples</span></option>
+            </select>
+          </div>
+          <div class="cf-group cf-full">
+            <label class="cf-label"><span data-es>Mensaje</span><span data-en>Message</span><span data-fr>Message</span></label>
+            <textarea class="cf-textarea" rows="4"></textarea>
+          </div>
+        </div>
+        <button class="cf-submit" type="submit" id="sbtn">
+          <span data-es>Enviar Solicitud</span>
+          <span data-en>Send Request</span>
+          <span data-fr>Envoyer la Demande</span>
+        </button>
+        <p class="cf-success" id="fsuccess">
+          <span data-es>✓ Solicitud enviada. Le responderemos en menos de 24 horas.</span>
+          <span data-en>✓ Request sent. We will reply within 24 business hours.</span>
+          <span data-fr>✓ Demande envoyée. Nous vous répondrons sous 24 heures ouvrables.</span>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="flogo"><img src="assets/LOGO_DIJO_AEROMARITIME.png" alt="DIJO Aeromaritime S.A."></div>
+      <p class="fdesc">
+        <span data-es>Operador estratégico de comercio internacional registrado en la Zona Libre de Colón, Panamá. Navegando el nuevo orden, conectando tu mundo.</span>
+        <span data-en>Strategic international trade operator registered in the Colón Free Zone, Panama. Navigating the new order, connecting your world.</span>
+        <span data-fr>Opérateur stratégique de commerce international enregistré dans la Zone Franche de Colón, Panama. Naviguer le nouvel ordre, connecter votre monde.</span>
+      </p>
+      <div class="foot-social">
+        <a href="mailto:dijoaeromaritime@gmail.com" class="fsoc" title="Email">✉</a>
+        <a href="https://wa.me/50768264309" class="fsoc" target="_blank" rel="noopener" title="WhatsApp">📱</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <div class="fcol-title"><span data-es>Navegación</span><span data-en>Navigation</span><span data-fr>Navigation</span></div>
+      <a href="#about"><span data-es>Nosotros</span><span data-en>About</span><span data-fr>À Propos</span></a>
+      <a href="#servicios"><span data-es>Operaciones</span><span data-en>Operations</span><span data-fr>Opérations</span></a>
+      <a href="#productos"><span data-es>Productos</span><span data-en>Products</span><span data-fr>Produits</span></a>
+      <a href="#rutas"><span data-es>Rutas</span><span data-en>Routes</span><span data-fr>Routes</span></a>
+      <a href="#o2o">O2O</a>
+      <a href="#alianzas"><span data-es>Alianzas</span><span data-en>Alliances</span><span data-fr>Alliances</span></a>
+      <a href="#contacto"><span data-es>Contacto</span><span data-en>Contact</span><span data-fr>Contact</span></a>
+    </div>
+    <div class="fcol">
+      <div class="fcol-title"><span data-es>Líneas de Producto</span><span data-en>Product Lines</span><span data-fr>Lignes de Produits</span></div>
+      <p><span data-es>Alimentos &amp; Granos</span><span data-en>Food &amp; Grains</span><span data-fr>Alimentation &amp; Grains</span></p>
+      <p><span data-es>Aceites &amp; Bebidas</span><span data-en>Oils &amp; Beverages</span><span data-fr>Huiles &amp; Boissons</span></p>
+      <p>Azúcar ICUMSA 45</p>
+      <p><span data-es>Combustibles</span><span data-en>Fuels</span><span data-fr>Carburants</span></p>
+      <p><span data-es>Farmacéuticos</span><span data-en>Pharmaceuticals</span><span data-fr>Pharmaceutique</span></p>
+      <p><span data-es>Licores &amp; Cigarrillos</span><span data-en>Spirits &amp; Tobacco</span><span data-fr>Spiritueux &amp; Tabac</span></p>
+    </div>
+    <div class="fcol">
+      <div class="fcol-title"><span data-es>Contacto</span><span data-en>Contact</span><span data-fr>Contact</span></div>
+      <p>+507 445-8372</p>
+      <p>+507 6826-4309</p>
+      <p>dijoaeromaritime@gmail.com</p>
+      <p style="margin-top:.5rem;font-size:.73rem;line-height:1.8">Bodegas TCL<br>Calle 3ra y Ave. 7ma<br>France Field, ZLC<br>Colón, Panamá</p>
+    </div>
+  </div>
+  <div class="fbar">
+    <div class="fleg">© 2026 DIJO Aeromaritime S.A. · Zona Libre de Colón, Panamá · <span data-es>Todos los derechos reservados</span><span data-en>All rights reserved</span><span data-fr>Tous droits réservés</span></div>
+    <div class="freg">RUC 155725880-2-2022 DV5 · Clave Zolicol 8972 · Lic. Int. Proveedor PA-1678</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   DIJO AEROMARITIME S.A. — script.js v3.0
+   ═══════════════════════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── REVEAL ON SCROLL ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.rv,.rl,.rr,.rs').forEach(el => obs.observe(el));
+
+  /* ── NAV SCROLL ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', scrollY > 60);
+  }, { passive: true });
+
+  /* ── MOBILE NAV ── */
+  document.getElementById('hbg')?.addEventListener('click', () =>
+    document.getElementById('mnav')?.classList.add('open'));
+  document.getElementById('mclose')?.addEventListener('click', () =>
+    document.getElementById('mnav')?.classList.remove('open'));
+  window.mn = () => document.getElementById('mnav')?.classList.remove('open');
+
+  /* ── LANGUAGE TOGGLE ── */
+  const html = document.documentElement;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      html.setAttribute('data-lang', btn.dataset.lng);
+    });
+  });
+
+  /* ── PRODUCT CATEGORY TABS ── */
+  const catObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); catObs.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      document.querySelectorAll('.prod-cat-section').forEach(s => {
+        s.classList.toggle('visible', s.id === 'cat-' + cat);
+      });
+      // Re-trigger reveal for newly shown cards
+      document.querySelectorAll('#cat-' + cat + ' .rv').forEach(el => {
+        el.classList.remove('on');
+        setTimeout(() => catObs.observe(el), 30);
+      });
+    });
+  });
+
+  /* ── HERO PARALLAX ── */
+  window.addEventListener('scroll', () => {
+    const g = document.querySelector('.hgrid');
+    if (g) g.style.transform = `translateY(${scrollY * .08}px)`;
+  }, { passive: true });
+
+  /* ── ACTIVE NAV LINKS ── */
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nlinks a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if (scrollY >= s.offsetTop - 130) cur = s.id; });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+  }, { passive: true });
+
+  /* ── CONTACT FORM ── */
+  window.handleForm = (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('sbtn');
+    const suc = document.getElementById('fsuccess');
+    btn.disabled = true;
+    btn.textContent = '...';
+    setTimeout(() => {
+      suc.style.display = 'block';
+      btn.style.background = '#1a7a3c';
+      btn.textContent = '✓';
+    }, 900);
+  };
+
+  /* ── ANIMATED ROUTE MAP ── */
+  initRouteMap();
+
+  /* ── COUNTER ANIMATION ── */
+  const counters = document.querySelectorAll('[data-count]');
+  const cObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseFloat(el.dataset.count);
+      const isFloat = String(target).includes('.');
+      const dur = 1800;
+      const step = target / (dur / 16);
+      let cur = 0;
+      const timer = setInterval(() => {
+        cur += step;
+        if (cur >= target) { cur = target; clearInterval(timer); }
+        el.textContent = isFloat ? cur.toFixed(1) : Math.floor(cur).toLocaleString();
+      }, 16);
+      cObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => cObs.observe(c));
+
+});
+
+/* ═══════════════════════════════════════════════════════════
+   ROUTE MAP — SVG animated shipping routes
+   ═══════════════════════════════════════════════════════════ */
+function initRouteMap() {
+  const svg = document.getElementById('routeMapSvg');
+  if (!svg) return;
+
+  /* Geographic coordinate → SVG coordinate converter
+     Map covers roughly: lon -90 to 0, lat 35 to -15 (Caribbean + S.America) */
+  const W = 900, H = 420;
+  const lonMin = -90, lonMax = -55, latMax = 25, latMin = -25;
+
+  function toXY(lon, lat) {
+    const x = ((lon - lonMin) / (lonMax - lonMin)) * W;
+    const y = ((latMax - lat) / (latMax - latMin)) * H;
+    return { x: Math.round(x), y: Math.round(y) };
+  }
+
+  /* Key locations */
+  const locs = {
+    colon:    toXY(-79.9, 9.3),   // Panama - Colón / Cristóbal
+    mariel:   toXY(-82.7, 22.9),  // Cuba - El Mariel
+    cartagena:toXY(-75.5, 10.4),  // Colombia - Cartagena
+    haiti:    toXY(-72.3, 18.5),  // Haiti - Port-au-Prince
+    guyana:   toXY(-58.2, 6.8),   // Guyana - Georgetown
+    santos:   toXY(-46.3, -23.9), // Brazil - Santos
+    bogota:   toXY(-74.1, 4.7),   // Reference
+  };
+
+  /* Draw dotted world-map background dots (Caribbean + S. America region) */
+  const dotsGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  dotsGroup.setAttribute('opacity', '0.18');
+  for (let lon = lonMin; lon <= lonMax; lon += 1.5) {
+    for (let lat = latMin; lat <= latMax; lat += 1.2) {
+      const { x, y } = toXY(lon, lat);
+      if (isLand(lon, lat)) {
+        const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', '1.5');
+        c.setAttribute('fill', '#2E86C1');
+        dotsGroup.appendChild(c);
+      }
+    }
+  }
+  svg.appendChild(dotsGroup);
+
+  /* Route A: Colón → El Mariel → Cartagena (gold) */
+  const routeA = buildCurvePath([locs.colon, locs.mariel, locs.cartagena], 30);
+  const pathA = makePath(routeA, 'route-path route-a');
+  svg.appendChild(pathA);
+
+  /* Route B: Colón → Haití → Cartagena (sky) */
+  const routeB = buildCurvePath([locs.colon, locs.haiti, locs.cartagena], -25);
+  const pathB = makePath(routeB, 'route-path route-b');
+  svg.appendChild(pathB);
+
+  /* Animated ship on route A */
+  const shipA = makeShipDot(locs.colon.x, locs.colon.y, 'ship-dot');
+  svg.appendChild(shipA);
+  animateAlongPath(shipA, pathA, 8000, 0);
+
+  /* Animated ship on route B */
+  const shipB = makeShipDot(locs.colon.x, locs.colon.y, 'ship-dot2');
+  svg.appendChild(shipB);
+  animateAlongPath(shipB, pathB, 10000, 2000);
+
+  /* Port markers + labels */
+  const ports = [
+    { loc: locs.colon,     label: 'Colón / Cristóbal',  color: '#C9A84C', sub: 'PANAMÁ' },
+    { loc: locs.mariel,    label: 'El Mariel',           color: '#C9A84C', sub: 'CUBA' },
+    { loc: locs.haiti,     label: 'Port-au-Prince',      color: '#2E86C1', sub: 'HAÏTI' },
+    { loc: locs.cartagena, label: 'Cartagena',           color: '#8FA3BC', sub: 'COLOMBIA' },
+    { loc: locs.guyana,    label: 'Georgetown',          color: '#8FA3BC', sub: 'GUYANA' },
+    { loc: locs.santos,    label: 'Santos',              color: '#8FA3BC', sub: 'BRASIL' },
+  ];
+  ports.forEach(p => {
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    // Outer ring
+    const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    ring.setAttribute('cx', p.loc.x); ring.setAttribute('cy', p.loc.y); ring.setAttribute('r', '7');
+    ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', p.color); ring.setAttribute('stroke-width', '1'); ring.setAttribute('opacity', '.5');
+    // Inner dot
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', p.loc.x); dot.setAttribute('cy', p.loc.y); dot.setAttribute('r', '3.5');
+    dot.setAttribute('fill', p.color);
+    // Label
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    lbl.setAttribute('x', p.loc.x + 11); lbl.setAttribute('y', p.loc.y - 3);
+    lbl.setAttribute('fill', '#EFF4F9'); lbl.setAttribute('font-size', '9');
+    lbl.setAttribute('font-family', 'Barlow Condensed, sans-serif');
+    lbl.setAttribute('letter-spacing', '1'); lbl.textContent = p.label;
+    const sub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    sub.setAttribute('x', p.loc.x + 11); sub.setAttribute('y', p.loc.y + 8);
+    sub.setAttribute('fill', p.color); sub.setAttribute('font-size', '7');
+    sub.setAttribute('font-family', 'Barlow Condensed, sans-serif');
+    sub.setAttribute('letter-spacing', '1.5'); sub.textContent = p.sub;
+    g.appendChild(ring); g.appendChild(dot); g.appendChild(lbl); g.appendChild(sub);
+    svg.appendChild(g);
+  });
+}
+
+/* Rough land check for dot-map (Caribbean + S. America bounding boxes) */
+function isLand(lon, lat) {
+  // Panama
+  if (lon>=-80&&lon<=-77&&lat>=7&&lat<=10) return true;
+  // Colombia
+  if (lon>=-78&&lon<=-66&&lat>=-4&&lat<=13) return true;
+  // Cuba
+  if (lon>=-85&&lon<=-74&&lat>=19&&lat<=23) return true;
+  // Hispaniola (Haiti/DR)
+  if (lon>=-74&&lon<=-68&&lat>=17&&lat<=20) return true;
+  // Venezuela
+  if (lon>=-73&&lon<=-60&&lat>=0&&lat<=13) return true;
+  // Brazil (partial)
+  if (lon>=-60&&lon<=-35&&lat>=-30&&lat<=5) return true;
+  // Guyana + Suriname
+  if (lon>=-62&&lon<=-52&&lat>=1&&lat<=9) return true;
+  // Central America
+  if (lon>=-90&&lon<=-77&&lat>=7&&lat<=18) return true;
+  // Jamaica
+  if (lon>=-78&&lon<=-76&&lat>=17&&lat<=19) return true;
+  // Puerto Rico
+  if (lon>=-67.3&&lon<=-65.6&&lat>=17.9&&lat<=18.6) return true;
+  // Trinidad
+  if (lon>=-62&&lon<=-60&&lat>=10&&lat<=12) return true;
+  return false;
+}
+
+function buildCurvePath(points, curveOffset) {
+  if (points.length < 2) return '';
+  let d = `M ${points[0].x} ${points[0].y}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p1 = points[i], p2 = points[i + 1];
+    const mx = (p1.x + p2.x) / 2;
+    const my = (p1.y + p2.y) / 2 + curveOffset;
+    d += ` Q ${mx} ${my} ${p2.x} ${p2.y}`;
+  }
+  return d;
+}
+
+function makePath(d, cls) {
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', d);
+  path.setAttribute('class', cls);
+  path.setAttribute('opacity', '0.7');
+  return path;
+}
+
+function makeShipDot(x, y, cls) {
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', '5');
+  c.setAttribute('class', cls);
+  const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  pulse.setAttribute('cx', x); pulse.setAttribute('cy', y); pulse.setAttribute('r', '10');
+  pulse.setAttribute('fill', 'none');
+  pulse.setAttribute('stroke', cls === 'ship-dot' ? '#C9A84C' : '#2E86C1');
+  pulse.setAttribute('stroke-width', '1'); pulse.setAttribute('opacity', '0');
+  g._mainCircle = c; g._pulse = pulse;
+  g.appendChild(pulse); g.appendChild(c);
+  return g;
+}
+
+function animateAlongPath(shipGroup, pathEl, duration, delay) {
+  const c = shipGroup._mainCircle;
+  const pulse = shipGroup._pulse;
+  const totalLength = pathEl.getTotalLength ? pathEl.getTotalLength() : 800;
+  let start = null;
+
+  function step(ts) {
+    if (!start) start = ts + delay;
+    if (ts < start) { requestAnimationFrame(step); return; }
+    const elapsed = (ts - start) % duration;
+    const progress = elapsed / duration;
+    const pt = pathEl.getPointAtLength(progress * totalLength);
+    const x = pt.x.toFixed(2), y = pt.y.toFixed(2);
+    c.setAttribute('cx', x); c.setAttribute('cy', y);
+    pulse.setAttribute('cx', x); pulse.setAttribute('cy', y);
+    // Pulse every few seconds
+    const pulsePhase = (elapsed % 3000) / 3000;
+    pulse.setAttribute('r', (10 + pulsePhase * 10).toFixed(1));
+    pulse.setAttribute('opacity', (0.6 * (1 - pulsePhase)).toFixed(2));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+</script>
+</body>
+</html>
