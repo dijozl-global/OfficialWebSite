@@ -114,6 +114,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+/* ── RESERVA MARÍTIMA — Envío por mailto a DIJO + reenvío ILA ── */
+window.handleReserva = function() {
+  const btn = document.getElementById('res-btn');
+  const suc = document.getElementById('res-success');
+
+  const nombre   = document.getElementById('res-nombre').value.trim();
+  const empresa  = document.getElementById('res-empresa').value.trim();
+  const email    = document.getElementById('res-email').value.trim();
+  const tel      = document.getElementById('res-tel').value.trim();
+  const origen   = document.getElementById('res-origen').value.trim();
+  const destino  = document.getElementById('res-destino').value.trim();
+  const tipo     = document.getElementById('res-tipo').value;
+  const cantidad = document.getElementById('res-cantidad').value;
+  const carga    = document.getElementById('res-carga').value.trim();
+
+  if (!nombre || !email || !destino) {
+    alert('Por favor completa los campos: Nombre, Email y Puerto Destino.');
+    return;
+  }
+
+  const subject = encodeURIComponent(`Solicitud de Espacio Marítimo — ${tipo} × ${cantidad} → ${destino}`);
+  const body = encodeURIComponent(
+`SOLICITUD DE ESPACIO MARÍTIMO — DIJO AEROMARITIME S.A.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nombre:          ${nombre}
+Empresa:         ${empresa || '—'}
+Email:           ${email}
+WhatsApp / Tel:  ${tel || '—'}
+Puerto Origen:   ${origen || 'Colón, Panamá'}
+Puerto Destino:  ${destino}
+Tipo:            ${tipo}
+Cantidad:        ${cantidad} contenedor(es)
+Detalles carga:  ${carga || '—'}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Solicitud generada desde dijoaeromaritime.com`
+  );
+
+  btn.disabled = true;
+  btn.style.background = 'var(--navy3)';
+
+  /* Abre cliente de correo con los datos pre-cargados */
+  window.location.href = `mailto:dijo.aeromaritime@gmail.com?subject=${subject}&body=${body}`;
+
+  /* Muestra confirmación visual tras 1.2s */
+  setTimeout(() => {
+    suc.style.display = 'block';
+    btn.style.background = '#1a7a3c';
+  }, 1200);
+};
+
 /* ═══════════════════════════════════════════════════════════
    ROUTE MAP — SVG animated shipping routes
    ═══════════════════════════════════════════════════════════ */
