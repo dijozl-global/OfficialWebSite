@@ -2469,6 +2469,52 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = '✓';
     }, 900);
   };
+  /* ── RESERVA DE FLETES - ENVÍO REAL ── */
+window.handleReserva = async () => {
+  const btn = document.getElementById('res-btn');
+  const suc = document.getElementById('res-success');
+  
+  const data = {
+    Nombre: document.getElementById('res-nombre').value.trim(),
+    Empresa: document.getElementById('res-empresa').value.trim(),
+    Email: document.getElementById('res-email').value.trim(),
+    WhatsApp: document.getElementById('res-tel').value.trim(),
+    'Puerto Origen': document.getElementById('res-origen').value.trim(),
+    'Puerto Destino': document.getElementById('res-destino').value.trim(),
+    'Tipo Contenedor': document.getElementById('res-tipo').value,
+    Cantidad: document.getElementById('res-cantidad').value,
+    'Detalles Carga': document.getElementById('res-carga').value.trim(),
+    _subject: 'NUEVA RESERVA FLETE - DIJO Aeromaritime',
+    _template: 'table',
+    _captcha: 'false'
+  };
+
+  if(!data.Nombre || !data.Email){
+    alert('Por favor complete Nombre y Email');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '...';
+
+  try {
+    const resp = await fetch('https://formsubmit.co/ajax/dijoaeromaritime@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    if(resp.ok){
+      suc.style.display = 'block';
+      btn.style.background = '#1a7a3c';
+      btn.innerHTML = '<span data-es>✓ Enviado</span><span data-en>✓ Sent</span><span data-fr>✓ Envoyé</span>';
+    } else { throw new Error(); }
+  } catch(err){
+    alert('Error. Envíe por WhatsApp +507 6826-4309');
+    btn.disabled = false;
+    btn.innerHTML = '<span data-es>Reintentar</span><span data-en>Retry</span><span data-fr>Réessayer</span>';
+  }
+};
 
   /* ── ANIMATED ROUTE MAP ── */
   initRouteMap();
