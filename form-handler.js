@@ -48,7 +48,7 @@
     if (emailJSReady) { callback(); return; }
     if (emailJSPending) { setTimeout(function () { cargarEmailJS(callback); }, 200); return; }
 
-    if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY === "HSKWMsNQdD88raueE" ||
+    if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY === "c2LRgfhGqc2ZGjoDI" ||
         !EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === "service_wyz2msk" ||
         !EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID === "template_n6zlmo2") {
       console.log("[DIJO Form] ℹ️ EmailJS no configurado. Solo WhatsApp.");
