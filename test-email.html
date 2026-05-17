@@ -9,13 +9,13 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     // ⚙️ PEGA AQUÍ TUS 3 VALORES REALES
-    emailjs.init("TU_PUBLIC_KEY_AQUI");
+    emailjs.init("c2LRgfhGqc2ZGjoDI"); // ← TU PUBLIC KEY REAL
 
     document.getElementById("testBtn").onclick = function () {
       var log = document.getElementById("log");
       log.textContent = "Enviando...";
 
-      emailjs.send("TU_SERVICE_ID_AQUI", "TU_TEMPLATE_ID_AQUI", {
+      emailjs.send("service_wyz2msk", "template_n6zlmo2", {
         nombre: "TEST Juan Pérez",
         empresa: "TEST Empresa Demo",
         email: "test@demo.com",
