@@ -1,15 +1,14 @@
 /**
  * DIJO Aeromaritime - Formulario "RESERVA DE FLETES"
- * Blindado contra CSP, 404s, y errores de DOM
+ * WhatsApp + Email (vía Formspree - blindado contra bloqueos del navegador)
  */
 (function () {
   "use strict";
 
-  // ═══════════ ⚙️ TUS 3 DATOS DE EMAILJS ═══════════
-  var EMAILJS_PUBLIC_KEY = "c2LRgfhGqc2ZGjoDI";
-  var EMAILJS_SERVICE_ID = "service_wyz2msk";
-  var EMAILJS_TEMPLATE_ID = "template_n6zlmo2";
-  // ═══════════════════════════════════════════════════════
+  // ═══════════ ⚙️ CONFIGURACIÓN ═══════════
+  var FORMSPREE_ID = "https://formspree.io/f/xnjrqarl";              // ← El código de Formspree (ej: "abc123def")
+  var EMAIL_DESTINO = "dijoaeromaritime@gmail.com";  // Email donde recibes las reservas
+  // ═══════════════════════════════════════════════════
 
   var WHATSAPP_NUMBER = "50768264309";
   var SUCCESS_DURATION = 8000;
@@ -26,18 +25,17 @@
   };
   function t(key) { return MSG[getLang()][key] || MSG["es"][key]; }
 
-  // ── safeRemove: nunca falla ──
   function safeRemove(el) { try { if (el && el.parentNode) el.parentNode.removeChild(el); } catch (ignore) {} }
 
   function init() {
-    console.log("[DIJO Form] v2.1 Iniciando...");
+    console.log("[DIJO Form] v3.0 Formspree | Iniciando...");
 
     var seccion = document.getElementById("reserva") || document.querySelector('section[id*="reserv"]');
     if (!seccion) { setTimeout(init, 500); return; }
     var inputs = seccion.querySelectorAll("input, select, textarea");
     if (inputs.length === 0) { setTimeout(init, 500); return; }
 
-    console.log("[DIJO Form] OK " + inputs.length + " campos. EmailJS: " + (EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY_AQUI" ? "CONFIGURADO" : "PENDIENTE"));
+    console.log("[DIJO Form] OK " + inputs.length + " campos. Email: " + (FORMSPREE_ID !== "XXXXXXXX" ? "CONFIGURADO (Formspree)" : "PENDIENTE"));
     var campos = mapearCampos(inputs);
 
     var form = seccion.querySelector("form");
@@ -122,58 +120,50 @@
       "\uD83D\uDCE6 *Tipo Contenedor:* " + getVal(c.tipoContenedor) + "\n\uD83D\uDD22 *Cantidad:* " + getVal(c.cantidad) + "\n\n" +
       "\uD83D\uDCDD *Detalles de Carga:*\n" + getVal(c.detalles);
     var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg.trim());
-    try {
-      var nw = window.open(url, "_blank", "noopener,noreferrer");
-      if (!nw || nw.closed || typeof nw.closed === "undefined") window.location.href = url;
-    } catch (ex) { window.location.href = url; }
+    try { var nw = window.open(url, "_blank", "noopener,noreferrer"); if (!nw || nw.closed || typeof nw.closed === "undefined") window.location.href = url; }
+    catch (ex) { window.location.href = url; }
   }
 
-  // ═══════════ ENVÍO EMAIL (blindado) ═══════════
+  // ═══════════ ENVÍO EMAIL POR FORMSPREE ═══════════
   function enviarEmail(c) {
-    console.log("[DIJO Form] 📧 Intentando enviar email...");
-
-    if (EMAILJS_PUBLIC_KEY === "TU_PUBLIC_KEY_AQUI") {
-      console.warn("[DIJO Form] ⚠️ Public Key sin configurar. Abortando email.");
+    if (FORMSPREE_ID === "XXXXXXXX") {
+      console.log("[DIJO Form] i Formspree sin configurar. Solo WhatsApp.");
       return;
     }
 
-    console.log("[DIJO Form] Enviando a EmailJS...");
+    console.log("[DIJO Form] Enviando email via Formspree...");
 
-    try {
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", "https://api.emailjs.com/api/v1.0/email/send", true);
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.timeout = 10000;
+    var data = new FormData();
+    data.append("nombre", getVal(c.nombre));
+    data.append("empresa", getVal(c.empresa));
+    data.append("email", getVal(c.email));
+    data.append("telefono", getVal(c.telefono));
+    data.append("puertoOrigen", getVal(c.puertoOrigen));
+    data.append("puertoDestino", getVal(c.puertoDestino));
+    data.append("tipoContenedor", getVal(c.tipoContenedor));
+    data.append("cantidad", getVal(c.cantidad));
+    data.append("detalles", getVal(c.detalles));
+    data.append("_replyto", getVal(c.email));
+    data.append("_subject", "🚢 Reserva de Fletes — " + getVal(c.nombre) + " / " + getVal(c.empresa));
 
-      xhr.onload = function () {
-        if (xhr.status === 200) {
-          console.log("[DIJO Form] ✅✅✅ EMAIL ENVIADO — Revisa dijoaeromaritime@gmail.com");
+    fetch("https://formspree.io/f/" + FORMSPREE_ID, {
+      method: "POST",
+      body: data,
+      headers: { "Accept": "application/json" },
+    })
+      .then(function (r) {
+        if (r.ok) {
+          console.log("[DIJO Form] ✅✅✅ EMAIL ENVIADO a " + EMAIL_DESTINO);
         } else {
-          console.error("[DIJO Form] ❌ EmailJS respondió " + xhr.status + ": " + xhr.responseText);
+          r.json().then(function (err) {
+            console.error("[DIJO Form] ❌ Formspree: " + JSON.stringify(err));
+          });
         }
-      };
-      xhr.onerror = function () {
-        console.error("[DIJO Form] ❌ Error de red. ¿CSP bloqueando api.emailjs.com?");
-        console.error("[DIJO Form] Prueba en consola: fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST'}).then(r=>console.log('OK',r.status)).catch(e=>console.error('CSP BLOQUEO',e.message))");
-      };
-      xhr.ontimeout = function () {
-        console.error("[DIJO Form] ❌ Timeout (10s) — api.emailjs.com no responde");
-      };
-
-      xhr.send(JSON.stringify({
-        service_id: EMAILJS_SERVICE_ID,
-        template_id: EMAILJS_TEMPLATE_ID,
-        user_id: EMAILJS_PUBLIC_KEY,
-        template_params: {
-          nombre: getVal(c.nombre), empresa: getVal(c.empresa), email: getVal(c.email),
-          telefono: getVal(c.telefono), puertoOrigen: getVal(c.puertoOrigen),
-          puertoDestino: getVal(c.puertoDestino), tipoContenedor: getVal(c.tipoContenedor),
-          cantidad: getVal(c.cantidad), detalles: getVal(c.detalles),
-        },
-      }));
-    } catch (e) {
-      console.error("[DIJO Form] ❌ Excepción: " + e.message);
-    }
+      })
+      .catch(function (err) {
+        console.error("[DIJO Form] ❌ Error de red: " + err.message);
+        console.log("[DIJO Form] ℹ️ Si ves esto, el navegador bloqueó formspree.io. Prueba desactivar el bloqueo de rastreo.");
+      });
   }
 
   function mostrarExito(seccion, c) {
@@ -193,11 +183,8 @@
   }
 
   function procesarEnvio(campos, seccion) {
-    console.log("[DIJO Form] ═══ PROCESANDO ENVÍO ═══");
     var e = validar(campos);
-    if (e.length > 0) { console.log("[DIJO Form] ❌ " + e.length + " errores de validación"); mostrarErrores(e); return false; }
-
-    console.log("[DIJO Form] ✅ Validación OK. Enviando WhatsApp + Email...");
+    if (e.length > 0) { mostrarErrores(e); return false; }
     enviarWhatsApp(campos);
     enviarEmail(campos);
     mostrarExito(seccion, campos);
