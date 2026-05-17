@@ -1,15 +1,14 @@
 /**
- * DIJO Aeromaritime - Manejador del formulario "RESERVA DE FLETES"
- * Valida, envía por WhatsApp Y por Email (EmailJS) en paralelo.
- * WhatsApp: +507 6826-4309  |  Email: dijoaeromaritime@gmail.com
+ * DIJO Aeromaritime - Formulario "RESERVA DE FLETES"
+ * WhatsApp + Email (EmailJS via SDK cargado estáticamente en <head>)
  */
 (function () {
   "use strict";
 
-  // ═══════════ ⚙️ CONFIGURA AQUÍ TUS DATOS DE EMAILJS ═══════════
-  var EMAILJS_PUBLIC_KEY = "c2LRgfhGqc2ZGjoDI";        //
-  var EMAILJS_SERVICE_ID = "service_wyz2msk";         //
-  var EMAILJS_TEMPLATE_ID = "template_n6zlmo2";       //
+  // ═══════════ ⚙️ PEGA TUS 3 DATOS DE EMAILJS AQUÍ ═══════════
+  var EMAILJS_PUBLIC_KEY = "c2LRgfhGqc2ZGjoDI";
+  var EMAILJS_SERVICE_ID = "service_wyz2msk";
+  var EMAILJS_TEMPLATE_ID = "template_n6zlmo2";
   // ═══════════════════════════════════════════════════════════════
 
   var WHATSAPP_NUMBER = "50768264309";
@@ -21,66 +20,36 @@
   }
 
   var MSG = {
-    es: {
-      required: "Este campo es requerido",
-      invalidEmail: "Email inválido",
-      success: "\u2713 Solicitud enviada. Te contactaremos en menos de 24 horas.",
-    },
-    en: {
-      required: "This field is required",
-      invalidEmail: "Invalid email",
-      success: "\u2713 Request sent. We will contact you within 24 hours.",
-    },
-    fr: {
-      required: "Ce champ est requis",
-      invalidEmail: "Email invalide",
-      success: "\u2713 Demande envoyée. Nous vous contacterons sous 24 heures.",
-    },
+    es: { required: "Este campo es requerido", invalidEmail: "Email inválido", success: "\u2713 Solicitud enviada. Te contactaremos en menos de 24 horas." },
+    en: { required: "This field is required", invalidEmail: "Invalid email", success: "\u2713 Request sent. We will contact you within 24 hours." },
+    fr: { required: "Ce champ est requis", invalidEmail: "Email invalide", success: "\u2713 Demande envoyée. Nous vous contacterons sous 24 heures." },
   };
 
   function t(key) { return MSG[getLang()][key] || MSG["es"][key]; }
 
-  // ═══════════════ EMAILJS: Carga dinámica ═══════════════
-  var emailJSReady = false;
-  var emailJSPending = false;
-
-  function cargarEmailJS(callback) {
-    if (emailJSReady) { callback(); return; }
-    if (emailJSPending) { setTimeout(function () { cargarEmailJS(callback); }, 200); return; }
-
-    if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY === "c2LRgfhGqc2ZGjoDI" ||
-        !EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === "service_wyz2msk" ||
-        !EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID === "template_n6zlmo2") {
-      console.log("[DIJO Form] ℹ️ EmailJS no configurado. Solo WhatsApp.");
-      emailJSReady = true;
-      callback();
+  // ── Inicializar EmailJS ──
+  var emailJSAvailable = false;
+  function initEmailJS() {
+    if (typeof emailjs === "undefined") {
+      console.warn("[DIJO Form] ⚠️ EmailJS SDK no encontrado. ¿Agregaste el <script> en <head>? Solo WhatsApp.");
       return;
     }
-
-    emailJSPending = true;
-    var script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
-    script.onload = function () {
-      try { emailjs.init(EMAILJS_PUBLIC_KEY); emailJSReady = true; }
-      catch (e) { console.warn("[DIJO Form] ⚠️ EmailJS init:", e.message); emailJSReady = true; }
-      emailJSPending = false;
-      callback();
-    };
-    script.onerror = function () {
-      console.warn("[DIJO Form] ⚠️ CDN EmailJS no disponible. Solo WhatsApp.");
-      emailJSReady = true; emailJSPending = false;
-      callback();
-    };
-    document.head.appendChild(script);
+    if (EMAILJS_PUBLIC_KEY === "c2LRgfhGqc2ZGjoDI") {
+      console.log("[DIJO Form] ℹ️ Public Key sin configurar. Solo WhatsApp.");
+      return;
+    }
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    emailJSAvailable = true;
+    console.log("[DIJO Form] ✅ EmailJS listo.");
   }
 
-  // ═══════════════ INIT ═══════════════
   function init() {
+    initEmailJS();
+
     var seccion = document.getElementById("reserva") || document.querySelector('section[id*="reserv"]');
     if (!seccion) { setTimeout(init, 500); return; }
 
     var inputs = seccion.querySelectorAll("input, select, textarea");
-    var submitBtn = seccion.querySelector("button[type='submit'], button.btn-primary, button, a.button, a.btn");
     if (inputs.length === 0) { setTimeout(init, 500); return; }
 
     console.log("[DIJO Form] ✅ " + inputs.length + " campos detectados.");
@@ -91,26 +60,15 @@
       form.addEventListener("submit", function (e) { e.preventDefault(); procesarEnvio(campos, seccion); });
       form.setAttribute("novalidate", "");
     }
+    var submitBtn = seccion.querySelector("button[type='submit'], button, a.button, a.btn");
     if (submitBtn && (!form || form.tagName !== "FORM")) {
       submitBtn.addEventListener("click", function (e) { e.preventDefault(); procesarEnvio(campos, seccion); });
     }
-    if (!form && !submitBtn) {
-      seccion.addEventListener("click", function (e) {
-        var tgt = e.target;
-        if (tgt.tagName === "BUTTON" || (tgt.tagName === "A" && tgt.getAttribute("href") === "#") ||
-            tgt.classList.contains("btn") || tgt.closest("button")) {
-          e.preventDefault(); procesarEnvio(campos, seccion);
-        }
-      });
-    }
-    cargarEmailJS(function () {});
   }
 
-  // ═══════════════ MAPEAR CAMPOS ═══════════════
   function mapearCampos(inputs) {
     var result = { nombre:null, empresa:null, email:null, telefono:null, puertoOrigen:null,
                    puertoDestino:null, tipoContenedor:null, cantidad:null, detalles:null };
-
     inputs.forEach(function (inp) {
       var tag = inp.tagName.toLowerCase();
       if (tag === "select" || tag === "input" || tag === "textarea") {
@@ -127,8 +85,6 @@
         if (!result.detalles && /detalle|detail|carga|cargo|cargaison|mercan/.test(fp)) result.detalles = inp;
       }
     });
-
-    // Fallback por orden
     var sinMapear = [];
     for (var key in result) { if (!result[key]) sinMapear.push(key); }
     if (sinMapear.length > 0) {
@@ -152,7 +108,6 @@
     return v;
   }
 
-  // ═══════════════ VALIDAR ═══════════════
   function validar(campos) {
     var errores = [];
     if (!getVal(campos.nombre)) errores.push({ campo: campos.nombre, msg: t("required") });
@@ -167,7 +122,6 @@
     return errores;
   }
 
-  // ═══════════════ MOSTRAR ERRORES ═══════════════
   function mostrarErrores(errores) {
     document.querySelectorAll(".form-error-msg").forEach(function (el) { el.remove(); });
     document.querySelectorAll(".form-field-error").forEach(function (el) { el.classList.remove("form-field-error"); });
@@ -179,19 +133,12 @@
         span.textContent = err.msg;
         span.style.cssText = "display:block;color:#f87171;font-size:0.7rem;margin-top:2px;animation:fadeInDown 0.2s ease-out";
         err.campo.parentNode.appendChild(span);
-        setTimeout(function () {
-          if (span.parentNode) span.parentNode.removeChild(span);
-          err.campo.classList.remove("form-field-error");
-        }, 4000);
+        setTimeout(function () { if (span.parentNode) span.parentNode.removeChild(span); err.campo.classList.remove("form-field-error"); }, 4000);
       }
     });
-    if (errores[0] && errores[0].campo) {
-      errores[0].campo.scrollIntoView({ behavior: "smooth", block: "center" });
-      setTimeout(function () { errores[0].campo.focus(); }, 400);
-    }
+    if (errores[0] && errores[0].campo) { errores[0].campo.scrollIntoView({ behavior: "smooth", block: "center" }); setTimeout(function () { errores[0].campo.focus(); }, 400); }
   }
 
-  // ═══════════════ ENVIAR WHATSAPP ═══════════════
   function enviarWhatsApp(campos) {
     var mensaje =
       "\uD83D\uDEA2 *RESERVA DE FLETES — DIJO Aeromaritime S.A.*\n\n" +
@@ -204,40 +151,28 @@
       "\uD83D\uDCE6 *Tipo Contenedor:* " + getVal(campos.tipoContenedor) + "\n" +
       "\uD83D\uDD22 *Cantidad:* " + getVal(campos.cantidad) + "\n\n" +
       "\uD83D\uDCDD *Detalles de Carga:*\n" + getVal(campos.detalles);
-
     var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(mensaje.trim());
     var nw = window.open(url, "_blank", "noopener,noreferrer");
     if (!nw || nw.closed || typeof nw.closed === "undefined") window.location.href = url;
   }
 
-  // ═══════════════ ENVIAR EMAIL (EmailJS) ═══════════════
   function enviarEmail(campos) {
-    cargarEmailJS(function () {
-      if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY === "TU_PUBLIC_KEY_AQUI" ||
-          !EMAILJS_SERVICE_ID || EMAILJS_SERVICE_ID === "TU_SERVICE_ID_AQUI" ||
-          !EMAILJS_TEMPLATE_ID || EMAILJS_TEMPLATE_ID === "TU_TEMPLATE_ID_AQUI") return;
+    if (!emailJSAvailable) { console.warn("[DIJO Form] ⚠️ EmailJS no disponible. Solo WhatsApp."); return; }
 
-      var params = {
-        nombre: getVal(campos.nombre),
-        empresa: getVal(campos.empresa),
-        email: getVal(campos.email),
-        telefono: getVal(campos.telefono),
-        puertoOrigen: getVal(campos.puertoOrigen),
-        puertoDestino: getVal(campos.puertoDestino),
-        tipoContenedor: getVal(campos.tipoContenedor),
-        cantidad: getVal(campos.cantidad),
-        detalles: getVal(campos.detalles),
-      };
-      try {
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(
-          function () { console.log("[DIJO Form] ✅ Email enviado a dijoaeromaritime@gmail.com"); },
-          function (err) { console.warn("[DIJO Form] ⚠️ EmailJS:", err.text || err.message); }
-        );
-      } catch (e) { console.warn("[DIJO Form] ⚠️ Error email:", e.message); }
-    });
+    var params = {
+      nombre: getVal(campos.nombre), empresa: getVal(campos.empresa),
+      email: getVal(campos.email), telefono: getVal(campos.telefono),
+      puertoOrigen: getVal(campos.puertoOrigen), puertoDestino: getVal(campos.puertoDestino),
+      tipoContenedor: getVal(campos.tipoContenedor), cantidad: getVal(campos.cantidad),
+      detalles: getVal(campos.detalles),
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).then(
+      function () { console.log("[DIJO Form] ✅ Email enviado a dijoaeromaritime@gmail.com"); },
+      function (err) { console.warn("[DIJO Form] ⚠️ EmailJS: " + (err.text || err.message)); }
+    );
   }
 
-  // ═══════════════ MOSTRAR ÉXITO ═══════════════
   function mostrarExito(seccion, campos) {
     document.querySelectorAll(".form-error-msg").forEach(function (el) { el.remove(); });
     document.querySelectorAll(".form-field-error").forEach(function (el) { el.classList.remove("form-field-error"); });
@@ -247,25 +182,15 @@
     var div = document.createElement("div");
     div.className = "form-success-alert";
     div.innerHTML = "<span style='font-size:1.2rem;margin-right:6px;'>\u2705</span>" + t("success");
-    div.style.cssText = "display:flex;align-items:center;gap:6px;margin-top:1rem;padding:0.75rem 1rem;" +
-      "background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);" +
-      "border-radius:0.75rem;color:#6ee7b7;font-size:0.85rem;font-weight:500;animation:fadeInUp 0.4s ease-out";
-
-    var panel = seccion.querySelector("form") || seccion.querySelector(".form-panel") || seccion.lastElementChild;
+    div.style.cssText = "display:flex;align-items:center;gap:6px;margin-top:1rem;padding:0.75rem 1rem;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:0.75rem;color:#6ee7b7;font-size:0.85rem;font-weight:500;animation:fadeInUp 0.4s ease-out";
+    var panel = seccion.querySelector("form") || seccion.lastElementChild;
     (panel || seccion).appendChild(div);
 
-    for (var key in campos) {
-      if (campos[key]) { campos[key].value = ""; campos[key].dispatchEvent(new Event("change", { bubbles: true })); }
-    }
-
-    setTimeout(function () {
-      if (div.parentNode) { div.style.opacity = "0"; div.style.transition = "opacity 0.3s ease-out";
-        setTimeout(function () { if (div.parentNode) div.parentNode.removeChild(div); }, 300); }
-    }, SUCCESS_DURATION);
+    for (var key in campos) { if (campos[key]) { campos[key].value = ""; campos[key].dispatchEvent(new Event("change", { bubbles: true })); } }
+    setTimeout(function () { if (div.parentNode) { div.style.opacity = "0"; div.style.transition = "opacity 0.3s ease-out"; setTimeout(function () { if (div.parentNode) div.parentNode.removeChild(div); }, 300); } }, SUCCESS_DURATION);
     div.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
-  // ═══════════════ PROCESAR ENVÍO ═══════════════
   function procesarEnvio(campos, seccion) {
     var errores = validar(campos);
     if (errores.length > 0) { mostrarErrores(errores); return false; }
@@ -275,8 +200,6 @@
     return true;
   }
 
-  // ═══════════════ ARRANQUE ═══════════════
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
-  window.addEventListener("load", function () { setTimeout(init, 300); });
 })();
