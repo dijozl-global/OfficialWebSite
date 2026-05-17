@@ -5,11 +5,7 @@
 (function () {
   "use strict";
 
-  // ═══════════ ⚙️ CONFIGURACIÓN ═══════════
-  var FORMSPREE_ID = "https://formspree.io/f/xnjrqarl";              // ← El código de Formspree (ej: "abc123def")
-  var EMAIL_DESTINO = "dijoaeromaritime@gmail.com";  // Email donde recibes las reservas
-  // ═══════════════════════════════════════════════════
-
+  var FORMSPREE_ID = "xnjrqarl";
   var WHATSAPP_NUMBER = "50768264309";
   var SUCCESS_DURATION = 8000;
 
@@ -24,20 +20,16 @@
     fr: { required: "Ce champ est requis", invalidEmail: "Email invalide", success: "\u2713 Demande envoyée. Nous vous contacterons sous 24 heures." },
   };
   function t(key) { return MSG[getLang()][key] || MSG["es"][key]; }
-
   function safeRemove(el) { try { if (el && el.parentNode) el.parentNode.removeChild(el); } catch (ignore) {} }
 
   function init() {
     console.log("[DIJO Form] v3.0 Formspree | Iniciando...");
-
     var seccion = document.getElementById("reserva") || document.querySelector('section[id*="reserv"]');
     if (!seccion) { setTimeout(init, 500); return; }
     var inputs = seccion.querySelectorAll("input, select, textarea");
     if (inputs.length === 0) { setTimeout(init, 500); return; }
-
-    console.log("[DIJO Form] OK " + inputs.length + " campos. Email: " + (FORMSPREE_ID !== "XXXXXXXX" ? "CONFIGURADO (Formspree)" : "PENDIENTE"));
+    console.log("[DIJO Form] OK " + inputs.length + " campos. Email: CONFIGURADO (Formspree)");
     var campos = mapearCampos(inputs);
-
     var form = seccion.querySelector("form");
     if (form) {
       form.addEventListener("submit", function (e) { e.preventDefault(); procesarEnvio(campos, seccion); });
@@ -124,15 +116,8 @@
     catch (ex) { window.location.href = url; }
   }
 
-  // ═══════════ ENVÍO EMAIL POR FORMSPREE ═══════════
   function enviarEmail(c) {
-    if (FORMSPREE_ID === "XXXXXXXX") {
-      console.log("[DIJO Form] i Formspree sin configurar. Solo WhatsApp.");
-      return;
-    }
-
     console.log("[DIJO Form] Enviando email via Formspree...");
-
     var data = new FormData();
     data.append("nombre", getVal(c.nombre));
     data.append("empresa", getVal(c.empresa));
@@ -143,7 +128,6 @@
     data.append("tipoContenedor", getVal(c.tipoContenedor));
     data.append("cantidad", getVal(c.cantidad));
     data.append("detalles", getVal(c.detalles));
-    data.append("_replyto", getVal(c.email));
     data.append("_subject", "🚢 Reserva de Fletes — " + getVal(c.nombre) + " / " + getVal(c.empresa));
 
     fetch("https://formspree.io/f/" + FORMSPREE_ID, {
@@ -153,30 +137,23 @@
     })
       .then(function (r) {
         if (r.ok) {
-          console.log("[DIJO Form] ✅✅✅ EMAIL ENVIADO a " + EMAIL_DESTINO);
+          console.log("[DIJO Form] ✅✅✅ EMAIL ENVIADO a dijoaeromaritime@gmail.com");
         } else {
-          r.json().then(function (err) {
-            console.error("[DIJO Form] ❌ Formspree: " + JSON.stringify(err));
-          });
+          r.json().then(function (err) { console.error("[DIJO Form] ❌ Formspree: " + JSON.stringify(err)); });
         }
       })
-      .catch(function (err) {
-        console.error("[DIJO Form] ❌ Error de red: " + err.message);
-        console.log("[DIJO Form] ℹ️ Si ves esto, el navegador bloqueó formspree.io. Prueba desactivar el bloqueo de rastreo.");
-      });
+      .catch(function (err) { console.error("[DIJO Form] ❌ Error: " + err.message); });
   }
 
   function mostrarExito(seccion, c) {
     document.querySelectorAll(".form-error-msg").forEach(safeRemove);
     document.querySelectorAll(".form-field-error").forEach(function (el) { try { el.classList.remove("form-field-error"); } catch (ignore) {} });
     var ex = seccion.querySelector(".form-success-alert"); safeRemove(ex);
-
     var div = document.createElement("div"); div.className = "form-success-alert";
     div.innerHTML = "<span style='font-size:1.2rem;margin-right:6px;'>\u2705</span>" + t("success");
     div.style.cssText = "display:flex;align-items:center;gap:6px;margin-top:1rem;padding:0.75rem 1rem;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:0.75rem;color:#6ee7b7;font-size:0.85rem;font-weight:500;animation:fadeInUp 0.4s ease-out";
     var panel = seccion.querySelector("form") || seccion.lastElementChild;
     try { (panel || seccion).appendChild(div); } catch (ignore) {}
-
     for (var k in c) { if (c[k]) { c[k].value = ""; try { c[k].dispatchEvent(new Event("change", { bubbles: true })); } catch (ignore) {} } }
     setTimeout(function () { if (div.parentNode) { div.style.opacity = "0"; div.style.transition = "opacity 0.3s ease-out"; setTimeout(function () { safeRemove(div); }, 300); } }, SUCCESS_DURATION);
     try { div.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (ignore) {}
