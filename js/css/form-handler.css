@@ -1,0 +1,79 @@
+/**
+ * DIJO Aeromaritime - Estilos de validación para form-handler.js
+ * Agregar este archivo ANTES de </head> en tu index.html
+ */
+
+/* ── Campo con error ── */
+.form-field-error {
+  border-color: #f87171 !important;
+  box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.15) !important;
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ── Mensaje de error ── */
+.form-error-msg {
+  display: block;
+  color: #f87171;
+  font-size: 0.7rem;
+  margin-top: 2px;
+  animation: fadeInDown 0.2s ease-out;
+  pointer-events: none;
+}
+
+/* ── Mensaje de éxito ── */
+.form-success-alert {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 0.75rem;
+  color: #6ee7b7;
+  font-size: 0.85rem;
+  font-weight: 500;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* ── Animaciones ── */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
