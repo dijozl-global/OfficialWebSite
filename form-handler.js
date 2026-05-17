@@ -1,15 +1,14 @@
 /**
  * DIJO Aeromaritime - Formulario "RESERVA DE FLETES"
- * Blindado contra CSP, 404s, y errores de DOM
+ * WhatsApp + Email (vía Formspree - blindado contra bloqueos del navegador)
  */
 (function () {
   "use strict";
 
-  // ═══════════ ⚙️ TUS 3 DATOS DE EMAILJS ═══════════
-  var EMAILJS_PUBLIC_KEY = "TU_PUBLIC_KEY_AQUI";
-  var EMAILJS_SERVICE_ID = "TU_SERVICE_ID_AQUI";
-  var EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID_AQUI";
-  // ═══════════════════════════════════════════════════════
+  // ═══════════ ⚙️ CONFIGURACIÓN ═══════════
+  var FORMSPREE_ID = "https://formspree.io/f/xnjrqarl";              // ← El código de Formspree (ej: "abc123def")
+  var EMAIL_DESTINO = "dijoaeromaritime@gmail.com";  // Email donde recibes las reservas
+  // ═══════════════════════════════════════════════════
 
   var WHATSAPP_NUMBER = "50768264309";
   var SUCCESS_DURATION = 8000;
