@@ -7,7 +7,7 @@
   "use strict";
 
   // ═══════════ ⚙️ CONFIGURA AQUÍ TUS DATOS DE EMAILJS ═══════════
-  var EMAILJS_PUBLIC_KEY = "HSKWMsNQdD88raueE";        //
+  var EMAILJS_PUBLIC_KEY = "c2LRgfhGqc2ZGjoDI";        //
   var EMAILJS_SERVICE_ID = "service_wyz2msk";         //
   var EMAILJS_TEMPLATE_ID = "template_n6zlmo2";       //
   // ═══════════════════════════════════════════════════════════════

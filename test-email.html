@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Test EmailJS</title></head>
+<body>
+  <h2>Test EmailJS — DIJO</h2>
+  <button id="testBtn">🚀 Probar envío de email YA</button>
+  <pre id="log"></pre>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // ⚙️ PEGA AQUÍ TUS 3 VALORES REALES
+    emailjs.init("TU_PUBLIC_KEY_AQUI");
+
+    document.getElementById("testBtn").onclick = function () {
+      var log = document.getElementById("log");
+      log.textContent = "Enviando...";
+
+      emailjs.send("TU_SERVICE_ID_AQUI", "TU_TEMPLATE_ID_AQUI", {
+        nombre: "TEST Juan Pérez",
+        empresa: "TEST Empresa Demo",
+        email: "test@demo.com",
+        telefono: "+507 6000-0000",
+        puertoOrigen: "Colón, Panamá",
+        puertoDestino: "El Mariel, Cuba",
+        tipoContenedor: "20' TEU",
+        cantidad: "3",
+        detalles: "PRUEBA DE SISTEMA - Arroz 50kg",
+      }).then(
+        function () { log.textContent = "✅ ¡EMAIL ENVIADO! Revisa dijoaeromaritime@gmail.com"; },
+        function (err) { log.textContent = "❌ FALLÓ: " + JSON.stringify(err, null, 2); }
+      );
+    };
+  </script>
+</body>
+</html>
