@@ -6,7 +6,7 @@
   "use strict";
 
   var FORMSPREE_ID = "xnjrqarl";
-  var WHATSAPP_NUMBER = "50768264309";
+  var WHATSAPP_NUMBER = "50765279897";
   var SUCCESS_DURATION = 8000;
 
   function getLang() {
@@ -137,7 +137,7 @@
     })
       .then(function (r) {
         if (r.ok) {
-          console.log("[DIJO Form] ✅✅✅ EMAIL ENVIADO a dijoaeromaritime@gmail.com");
+          console.log("[DIJO Form] ✅✅✅ EMAIL ENVIADO a naviera@dijoaeromaritime.com");
         } else {
           r.json().then(function (err) { console.error("[DIJO Form] ❌ Formspree: " + JSON.stringify(err)); });
         }
