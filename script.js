@@ -155,7 +155,7 @@ Solicitud generada desde dijoaeromaritime.com`
   btn.style.background = 'var(--navy3)';
 
   /* Abre cliente de correo con los datos pre-cargados */
-  window.location.href = `mailto:dijo.aeromaritime@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:soporte@dijoaeromaritime.com?subject=${subject}&body=${body}`;
 
   /* Muestra confirmación visual tras 1.2s */
   setTimeout(() => {
